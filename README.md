@@ -25,6 +25,11 @@ System.out.println('Hello world');
 
 ## Execution d'une application en ligne de commande
 
+Ouvrez l'inviter de commande a la racine du projet ou se trouve le fichier Main.class
+
+```cmd
+java Main.java
+```
 
 ## Syntaxe de base
 

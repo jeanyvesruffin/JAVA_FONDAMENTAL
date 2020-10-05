@@ -44,7 +44,7 @@ Commenter un bloc avec l'aide de /*...*/
 
 Commentaire java doc /**...*/
 
-##Organisation du code et package
+## Organisation du code et package
 
 Le code est organise en package.
 

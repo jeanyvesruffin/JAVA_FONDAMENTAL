@@ -37,6 +37,16 @@ public class Main {
 		// Interger double
 		double tailleAtomeMetre = 0.00000000001d;
 		System.out.println(tailleAtomeMetre);
+		// Character
+		char defautU = 'U';
+		System.out.println(defautU);
+		// unicode
+		char accentU = '\u00DA' ;
+		System.out.println(accentU);
+		// Boolean
+		boolean jaimeJava = true ;
+		System.out.println(jaimeJava);
+		
 	}
 
 }

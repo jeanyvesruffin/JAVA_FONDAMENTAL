@@ -96,7 +96,7 @@ final int nombreMAx = 1542 ;
 
 ## Les donnees de type primitives
 
-*Entier (Nombre)*
+* Entier (Nombre/ Integer)
 
 Types: bytes / 8 bits / min value = -128 / max value = 127 / literal form : 0
 
@@ -148,22 +148,34 @@ double tailleAtomeMetre = 0.00000000001d ;
 
 
 
-* Carateres
+* Carateres (Lettre,Caracteres speciaux (unicode...))
+
+Stockage d'un caratere seul
 
 ```java
-//Constante
-final int nombreMAx = 1542 ;
+// Character
+char defautU = 'U' ;
+```
+
+Stockage d'un unicode seul
+
+```java
+// unicode
+char accentU = '\u00DA' ;
 ```
 
 * Boolean
 
 ```java
-//Constante
-final int nombreMAx = 1542 ;
+// Boolean
+boolean jaimeJava = true ;
 ```
 
 
 ## Le stockage des donnees de type primitives
+
+
+
 ## Les operateurs arithmetiques
 
 ## La convertion des types de donnees

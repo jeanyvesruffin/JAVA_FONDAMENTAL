@@ -294,6 +294,74 @@ System.out.println(result4);
 
 ## La convertion des types de donnees
 
+La convertion se fait a l'aide de transtypage (ou cast).
+
+```java
+// Transtypage 
+int myValue = 50 ;
+System.out.println(myValue);
+// return 50
+long longValue = myValue;
+System.out.println(longValue);
+// return 50.0
+long longValueDeux = 50;
+System.out.println(longValueDeux);
+// return 50.0
+int intValuedeux = (int) longValueDeux;
+System.out.println(intValuedeux);
+// return 50
+
+```
+
+* Type implicite 
+
+Les conversions d'elargissement sont effectuees automatiquement pour les equations utilisant des entier (integer), ou des doubles ou des nombres a virgules.
+
+* Type explicite
+
+Attention lors de cast le surplus sera supprimer si la taille n'est pas suffisante.
+
+## Logic conditionnel
+
+<, >, <=, =>, ==, !=
+
+Condition ternaire
+
+result = condition ? true-value : false-value
 
 
+```java
+// Ternaire 
+int valeur1 = 7;
+int valeur2 = 5;
+// si int searchValue = valeur1 > valeur2  alors print ok sinon ko
+int searchValue = valeur1 > valeur2 ? valeur1 : valeur2 ; 
+System.out.println("Valeur recherche :"+searchValue);
+// return 7
+```
+
+## If-else
+
+```java
+if (valueA > valueB ) {
+	System.out.println("Valeur A est plus grande que "+ valueB );
+}else if (valueA < valueB ){
+	System.out.println("Valeur A est plus petite que "+ valueB );
+}else {
+	System.out.println("Valeur A egal valeur B");
+}
+ 
+```
+
+## Operation logique
+
+* And : &
+* Ou : |
+* Xor (ou exclusif) : ^ 
+* Negation : !
+
+## Condition d'operation logique
+
+* And : &&
+* Or : ||
 

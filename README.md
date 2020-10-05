@@ -31,10 +31,30 @@ Ouvrez l'inviter de commande a la racine du projet ou se trouve le fichier Main.
 java Main.java
 ```
 
-## Syntaxe de base
+## Syntaxe d'une instruction
+
+Une instruction se termine par un ;
 
 
 ## Commentaires
 
+Commenter une ligne avec l'aide de //...
+
+Commenter un bloc avec l'aide de /*...*/
+
+Commentaire java doc /**...*/
 
 ## Organisation du code et package
+
+Le code est organise en package.
+
+Ces packages ont une convention de nom:
+
+* les noms de package sont toujours en minuscules
+* utilisation du nom de domaine inverse afin d'assurer l'unicite global de nos nom de package.
+
+**Exemple**
+
+```java
+package com.ruffin
+```

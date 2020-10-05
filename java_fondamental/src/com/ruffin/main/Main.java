@@ -41,12 +41,56 @@ public class Main {
 		char defautU = 'U';
 		System.out.println(defautU);
 		// unicode
-		char accentU = '\u00DA' ;
+		char accentU = '\u00DA';
 		System.out.println(accentU);
 		// Boolean
-		boolean jaimeJava = true ;
+		boolean jaimeJava = true;
 		System.out.println(jaimeJava);
+
+		// Affectation
+		int premierNombre = 154;
+		System.out.println(premierNombre);
+		int secondNombre = premierNombre;
+		System.out.println(secondNombre);
+		premierNombre = 4;
+		System.out.println(premierNombre);
+		secondNombre = 655;
+		System.out.println(secondNombre);
+		int first = 13;
+		int second = 5;
+		int resultModulo = 0;
+		resultModulo = first % second;
+		System.out.println(resultModulo);
+		int increm = 5;
+		System.out.println(++increm);
+		System.out.println(increm);
+		int autreIncrem = 5;
+		System.out.println(autreIncrem++);
+		System.out.println(autreIncrem);
+		int testAssign = 100;
+		testAssign += 50;
+		System.out.println(testAssign);
+		int testAssignCompose = 100;
+		int val1 = 5;
+		int val2 = 10;
+		testAssignCompose /= val1 * val2;
+		System.out.println(testAssignCompose);
+		int nbA = 21;
+		int nbB = 6;
+		int nbC = 3;
+		int nbD = 1;
+		int result1 = nbA - nbB / nbC;
+		System.out.println(result1);
+		//return 19
+		int result2 = (nbA - nbB) / nbC;
+		System.out.println(result2);
+		//return 5
+		int result3 = nbA / nbC * nbD + nbB;
+		System.out.println(result3);
+		//return 13
+		int result4 = nbA / (nbC * (nbD + nbB));
+		System.out.println(result4);
+		//return 1
 		
 	}
-
 }

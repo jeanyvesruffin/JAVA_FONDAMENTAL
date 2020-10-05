@@ -184,12 +184,16 @@ Elle auront leur propre espace memoire.
 // Affectation
 int premierNombre = 154;
 System.out.println(premierNombre);
+// return 154
 int secondNombre = premierNombre;
 System.out.println(secondNombre);
+// return 154
 premierNombre = 4;
 System.out.println(premierNombre);
+// return 4
 secondNombre = 655;
 System.out.println(secondNombre);
+// return 655
 ```
 
 ## Les operateurs arithmetiques

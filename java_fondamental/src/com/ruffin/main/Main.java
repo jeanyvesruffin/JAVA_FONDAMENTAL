@@ -1,4 +1,4 @@
-package com.ruffin;
+package com.ruffin.main;
 
 public class Main {
 /**

@@ -62,6 +62,31 @@ package com.ruffin
 
 ## Les variables
 
+Une variable est un simple espace de stockage ou l'on y met une valeur qui sera fortement type.
+
+Elle est structure telquelle: Declaration, Initialisation (ou les deux en un) et utilisation
+
+**Exemple/**
+
+```java
+// Declaration
+int unNombre;
+
+//Initialisation
+unNombre = 150;
+
+// Declaration+Initialisation
+int unNombre = 150;
+
+//Utilisation
+System.out.println(unNombre);
+``` 
+
+
+
+* entier: int
+
+
 ## Les donnees de type primitives
 ## Le stockage des donnees de type primitives
 ## Les operateurs arithmetiques

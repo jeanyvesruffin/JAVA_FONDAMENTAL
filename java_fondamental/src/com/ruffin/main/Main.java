@@ -6,11 +6,16 @@ public class Main {
  * @param args
  */
 	public static void main(String[] args) {
+		// Declaration variable + initilisation
+		int unNombre = 150;
+		
 		System.out.println("Test first line comment"); // Ce commentaire ne sera pas compile
 		/*
 		 * Ce bloc de commentaire ne sera pas compile
 		 */
 		System.out.println("Hello world");
+		// Utilisation de la variable unNombre
+		System.out.println(unNombre);
 
 	}
 

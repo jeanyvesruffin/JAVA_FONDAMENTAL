@@ -36,7 +36,7 @@ java Main.java
 Une instruction se termine par un ;
 
 
-## Commentaires
+##Commentaires
 
 Commenter une ligne avec l'aide de //...
 
@@ -44,7 +44,7 @@ Commenter un bloc avec l'aide de /*...*/
 
 Commentaire java doc /**...*/
 
-## Organisation du code et package
+##Organisation du code et package
 
 Le code est organise en package.
 

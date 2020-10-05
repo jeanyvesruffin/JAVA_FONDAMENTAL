@@ -55,6 +55,16 @@ Ces packages ont une convention de nom:
 
 **Exemple**
 
+## Les variables
+
+## Les donnees de type primitives
+## Le stockage des donnees de type primitives
+## Les operateurs arithmetiques
+## La convertion des types de donnees
+
+
+
+
 ```java
 package com.ruffin
 ```

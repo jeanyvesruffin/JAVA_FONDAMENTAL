@@ -361,7 +361,9 @@ if (valueA > valueB ) {
 * Xor (ou exclusif) : ^ 
 * Negation : !
 
-## Condition d'operation logique
+
+##Condition d'operation logique
+
 
 * And : &&
 * Or : ||

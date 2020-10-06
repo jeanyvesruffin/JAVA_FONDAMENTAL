@@ -1,5 +1,7 @@
 package com.ruffin.main;
 
+import java.util.Scanner;
+
 public class Main {
 	/**
 	 * Ceci est un commentaire qui ne sera pas compilé mais generera la doc java
@@ -7,6 +9,30 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+
+		/////////////////
+		// calculatrice//
+		/////////////////
+		executeInteractively();
+		// Declaration + Initialisation
+		double[] membresDeGauche = { 100.0d, 25.0d, 225.0d, 11.0d };
+		double[] membresDeDroite = { 50.0d, 92.0d, 17.0d, 3.0d };
+		char[] typeOperations = { 'a', 's', 'm', 'd' };
+		double[] resultats = new double[typeOperations.length];
+
+		// Utilisation
+		if (args.length == 0) {
+			for (int i = 0; i < typeOperations.length; i++) {
+				resultats[i] = execute(typeOperations[i], membresDeGauche[i], membresDeDroite[i]);
+			}
+			for (double d : resultats) {
+				System.out.println(d);
+			}
+		} else if (args.length == 3) {
+			manipulationEnLigneDeCommande(args);
+		} else
+			System.out.println("Veuillez entrez le code de m'operation ainsi que deux chiffres");
+
 		// Declaration variable + initilisation
 		int unNombre = 150;
 		// Declaration variable final + initilisation
@@ -162,7 +188,7 @@ public class Main {
 		double[] valeurDeGauche = { 2.145d, 74.155d, 8.1d, 23489.12d };
 		char[] opCode = { 'a', 's', 'm', 'd' };
 		double[] resultOp = new double[opCode.length];
-		System.out.println("longueur :"+resultOp.length);
+		System.out.println("longueur :" + resultOp.length);
 		for (int i = 0; i < resultOp.length; i++) {
 			System.out.println(opCode[i]);
 			switch (opCode[i]) {
@@ -187,14 +213,185 @@ public class Main {
 				resultOp[i] = 0.0d;
 				break;
 			}
-			System.out.println("result "+ resultOp[i]);
+			System.out.println("result " + resultOp[i]);
 		}
 		// for each
-		float resultOp2[]= {10.0f, 20.0f, 15.0f}; 
+		float resultOp2[] = { 10.0f, 20.0f, 15.0f };
 		float sum1 = 0.0f;
 		for (float currentVal : resultOp2) {
 			sum1 += currentVal;
 			System.out.println(sum1);
 		}
+		faitQuelqueChose();
+		int david = 17, dawson = 15, dillon = 8, gordon = 6;
+		// nous voulons afficher Mes noeuveux ont 17, 15, 8 et 6 ans le plus jeune.
+		// Concatenation d'un String
+		String s1 = "Mes noeuveux ont " + david + ", " + dawson + ", " + dillon + " et " + gordon
+				+ " ans le plus jeune.";
+		System.out.println(s1);
+		// Formatage du String
+		String s2 = String.format("Mes noeuveux ont %d, %d, %d et %d ans le plus jeune.", david, dawson, dillon,
+				gordon);
+		System.out.println(s2);
+		// calcule moyen d'age
+		double avgDiff = ((david - dawson) + (dawson - dillon) + (dillon - gordon)) / 3.0d;
+		// Concatenation d'un String
+		String s3 = "La moyenne d'age entre chaque est " + avgDiff + " ans.";
+		System.out.println(s3);
+		// Formatage du String pour mettre une precision au resultat
+		String s4 = String.format("La moyenne d'age entre chaque est %.1f ans.", avgDiff);
+		System.out.println(s4);
+		// Utilisation formatage
+
+		// Exemple flag, Represente :
+		int iValRadix = 32;
+		String radix = String.format("%d Decimal", iValRadix);
+		System.out.println(radix);
+		String radix2 = String.format("%x Hexadecimal", iValRadix);
+		System.out.println(radix2);
+		String radix4 = String.format("%#x Hexadecimal+flag", iValRadix);
+		System.out.println(radix4);
+		String radix3 = String.format("%#x Hexadecimal mAJ+flag", iValRadix);
+		System.out.println(radix3);
+		int w = 5, x = 235, y = 481, z = 12;
+		String test = String.format("W:%d X:%d", w, x);
+		String test2 = String.format("Y:%d Z:%d", y, z);
+		System.out.println(test);
+		System.out.println(test2);
+		// alignement des deux String a l'aide d'un width de 4
+		String test3 = String.format("W:%4d X:%4d", w, x);
+		String test4 = String.format("y:%4d z:%4d", y, z);
+		System.out.println(test3);
+		System.out.println(test4);
+		// alignement des deux String a l'aide d'un width de 4 et rempli de 0
+		String test5 = String.format("W:%04d X:%04d", w, x);
+		String test6 = String.format("y:%04d z:%04d", y, z);
+		System.out.println(test5);
+		System.out.println(test6);
+		// alignement des deux String a l'aide d'un width de 4 et aligne a gauche
+		String test7 = String.format("W:%-4d X:%-4d", w, x);
+		String test8 = String.format("y:%-4d z:%-4d", y, z);
+		System.out.println(test7);
+		System.out.println(test8);
+		int nbTest = 1234567;
+		s1 = String.format("%d", nbTest);
+		s2 = String.format("%,d", nbTest);
+		System.out.println(s1);
+		System.out.println(s2);
+		double dVal = 1234567.0d;
+		s3 = String.format("%,.2f", dVal);
+		System.out.println(s3);
+		int flagVal = 123, flagValNeg = -146;
+		s1 = String.format("%d", flagVal);
+		s2 = String.format("%d", flagValNeg);
+		System.out.println(s1);
+		System.out.println(s2);
+		s1 = String.format("% d", flagVal);
+		s2 = String.format("% d", flagValNeg);
+		System.out.println(s1);
+		System.out.println(s2);
+		s1 = String.format("%+d", flagVal);
+		s2 = String.format("%+d", flagValNeg);
+		System.out.println(s1);
+		System.out.println(s2);
+		s1 = String.format("%(d", flagVal);
+		s2 = String.format("%(d", flagValNeg);
+		System.out.println(s1);
+		System.out.println(s2);
+		s1 = String.format("% (d", flagVal);
+		s2 = String.format("%(d", flagValNeg);
+		System.out.println(s1);
+		System.out.println(s2);
+		s1 = "blabla";
+		s2 = "blabla";
+		if (s1.equals(s2)) {
+			System.out.println("C'est bon");
+		}
+		int nbConvertString = 25462;
+		String convertToString = String.valueOf(nbConvertString);
+		System.out.println(convertToString);
+
 	}
+
+	private static void manipulationEnLigneDeCommande(String[] args) {
+		char c = args[0].charAt(0);
+		double d = Double.parseDouble(args[1]);
+		double e = Double.parseDouble(args[2]);
+		double result = execute(c, d, e);
+		System.out.println(result);
+
+	}
+
+	private static double execute(char c, double d, double e) {
+		double result;
+		switch (c) {
+		case 'a': {
+			result = d + e;
+			break;
+		}
+		case 's': {
+			result = d - e;
+			break;
+		}
+		case 'm': {
+			result = d * e;
+			break;
+		}
+		case 'd': {
+			result = e != 0 ? d / e : 0.0d;
+			break;
+		}
+		default:
+			System.out.println(" Code invalide :" + c);
+			result = 0.0d;
+			break;
+		}
+		return result;
+	}
+
+	// methode
+	static void faitQuelqueChose() {
+		System.out.println("a l'interieur de la methode");
+		System.out.println("Reste a l'interieur de la methode");
+
+	}
+
+	static char saisiCodeOperation(String op) {
+		System.out.println("operation en cours :" + op);
+		char opCode = op.charAt(0);
+		return opCode;
+	}
+
+	static double saisiValMot(String val) {
+		String[] numeros = { "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf" };
+		double value = 0d;
+		for (int i = 0; i < numeros.length; i++) {
+			if (val.equals(numeros[i])) {
+				value = i+1;
+				break;
+			}
+		}
+		System.out.println("valeur entrer : "+value);
+		return value;
+	}
+
+	static void executeInteractively() {
+		System.out.println("Veuillez entrer  un type d'operation (a,m,s,d) ainsi que deux chiffres en lettre compris entre 0 et 9");
+		Scanner sc = new Scanner(System.in);
+		String userInput = sc.nextLine();
+		String [] parts = userInput.split(" ");
+		performOperation(parts);
+	}
+
+	private static void performOperation(String[] parts) {
+		for (String string : parts) {
+			System.out.println(string);
+		}
+		char c = saisiCodeOperation(parts[0]);
+		double d = saisiValMot(parts[1]);
+		double e = saisiValMot(parts[2]);
+		double result = execute(c, d, e);
+		System.out.println(result);
+	}
+
 }

@@ -479,3 +479,256 @@ for (float currentVal : resultOp2) {
 }
 ```
 
+## Methodes
+
+
+```java
+type de retours name (list parametre type){
+	instruction(s)
+}
+```
+
+## Passage parametre a une methode via ligne de commande
+
+```java
+if (args.length == 0) {
+	for (int i = 0; i < typeOperations.length; i++) {
+		resultats[i]=execute(typeOperations[i], membresDeGauche[i], membresDeDroite[i]);
+	}
+	for (double d : resultats) {
+		System.out.println(d);
+	}
+} else if (args.length == 3) {
+	manipulationEnLigneDeCommande(args);
+} else
+	System.out.println("Veuillez entrez le code de m'operation ainsi que deux chiffres");
+	
+	private static void manipulationEnLigneDeCommande(String[] args) {
+	char c = args[0].charAt(0);
+	double d=Double.parseDouble(args[1]);
+	double e=Double.parseDouble(args[2]);
+	double result =execute(c,d,e);
+	System.out.println(result);
+}
+
+private static double execute(char c, double d, double e) {
+	double result;
+	switch (c) {
+	case 'a': {
+		result = d + e;
+		break;
+	}
+	case 's': {
+		result = d - e;
+		break;
+	}
+	case 'm': {
+		result = d * e;
+		break;
+	}
+	case 'd': {
+		result = e != 0 ? d / e : 0.0d;
+		break;
+	}
+	default:
+		System.out.println(" Code invalide :" + c);
+		result = 0.0d;
+		break;
+	}
+	return result;
+}
+```
+
+A l'aide d'eclipse dans les panneau de configuration ajouter 3 arguments.
+
+Exemple : a 20 10
+
+Lors de l'execution nous aurons le resultat 30 qui s'affichera.
+
+## Chaine de caractere (class String)
+
+* Egalite entre deux String
+
+```java
+s1="blabla";
+s2="blabla";
+if(s1.equals(s2)){
+	System.out.println("C'est bon");
+}
+
+```
+
+* Conversion d'un entier en String
+
+```java
+int nbConvertString = 25462;
+String convertToString = String.valueOf(nbConvertString);
+System.out.println(convertToString);
+```
+
+* Ajout de saisi utilisateur
+
+Commencer par definir nos entré
+
+```java
+static char saisiCodeOperation (String op) {
+	char opCode = op.charAt(0);
+	return opCode;
+}
+
+static double saisiValMot (String val) {
+	String [] numeros = {"un","deux","trois","quatre","cinq","six","sept","huit","neuf"};
+	double value = 0d;
+	for (int i = 0; i < numeros.length; i++) {
+		if (val.equals(numeros[i])) {
+			value = i+1;
+			break;
+		}
+	}
+	return value;		
+}
+
+```
+
+Rendre l'application interactive en ajoutant des scanner
+
+```java
+import java.util.Scanner; 
+static void executeInteractively() {
+	System.out.println("Veuillez entrer  un type d'operation (a,m,s,d) ainsi que deux chiffres");
+	Scanner sc = new Scanner(System.in);
+	String userInput = sc.nextLine();
+	String [] parts = userInput.split(" ");
+	performOperation(parts);
+}
+
+private static void performOperation(String[] parts) {
+	char c = saisiCodeOperation(parts[0]);
+	double d = saisiValMot(parts[2]);
+	double e = saisiValMot(parts[2]);
+	double result = execute(c, d, e);
+	System.out.println(result);
+}
+```
+
+* String builder
+
+
+
+## Format des String
+
+Nous voulons afficher Mes noeuveux ont 17, 15, 8 et 6 ans le plus jeune.
+
+```java
+// Concatenation d'un String
+String s1 = "Mes noeuveux ont " + david + ", " + dawson + ", " + dillon + " et " + gordon
+		+ " ans le plus jeune.";
+System.out.println(s1);
+// Formatage du String
+String s2 = String.format("Mes noeuveux ont %d, %d, %d et %d ans le plus jeune.", david, dawson, dillon,
+		gordon);
+System.out.println(s2);
+```
+
+Puis calculer la moyen d'age et le formater
+
+```java
+// calcule moyen d'age
+double avgDiff = ((david - dawson) + (dawson - dillon) + (dillon - gordon)) / 3.0d;
+// Concatenation d'un String
+String s3 = "La moyenne d'age entre chaque est " + avgDiff + " ans.";
+System.out.println(s3);
+// Formatage du String pour mettre une precision au resultat
+String s4 = String.format("La moyenne d'age entre chaque est %.1f ans.", avgDiff);
+System.out.println(s4);
+```
+
+
+Utilisation formatage
+
+% [flags][width][precision]conversion
+
+conversion: d ,Represente: Decimal ,Type: Integer,Exemple Value: 32 ,Result: 32
+
+conversion: xX ,Represente: Hex ,Type: Integer,Exemple Value: 32 ,Result: 20
+
+conversion: f ,Represente: Decimal ,Type: Floating point,Exemple Value: 123.0 ,Result: 123.000000
+
+conversion: eE ,Represente: Scientific notation ,Type: Floating point,Exemple Value: 123.0 ,Result: 1.230000e+02
+
+conversion: s ,Represente: String ,Type: General,Exemple Value: "Hello" ,Result: Hello
+
+[flag]: # ,Represente: Inclut radix [flag]: 0 ,Represente: pas de marge
+
+[flag]: - ,Represente: colle le texte a gauche
+
+[flag]: , , Represente: separe les groupes par des espaces (suivant le pays en us c'est par des ,)
+
+[flag]: SPACE, Represente : espace de debut quand nombre positif
+
+[flag]: +, Represente : signe toujours visible
+
+[flag]: (, Represente : inclure des valeurs negatives entre parentheses
+
+
+```java
+// Exemple flag, Represente :
+int iValRadix = 32;
+String radix = String.format("%d Decimal", iValRadix);
+System.out.println(radix);
+String radix2 = String.format("%x Hexadecimal", iValRadix);
+System.out.println(radix2);
+String radix4 = String.format("%#x Hexadecimal+flag", iValRadix);
+System.out.println(radix4);
+String radix3 = String.format("%#x Hexadecimal mAJ+flag", iValRadix);
+System.out.println(radix3);
+int w = 5, x = 235, y = 481, z = 12;
+String test = String.format("W:%d X:%d", w, x);
+String test2 = String.format("Y:%d Z:%d", y, z);
+System.out.println(test);
+System.out.println(test2);
+//alignement des deux String a l'aide d'un width de 4
+String test3 = String.format("W:%4d X:%4d", w, x);
+String test4 = String.format("y:%4d z:%4d", y, z);
+System.out.println(test3);
+System.out.println(test4);
+//alignement des deux String a l'aide d'un width de 4 et rempli de 0
+String test5 = String.format("W:%04d X:%04d", w, x);
+String test6 = String.format("y:%04d z:%04d", y, z);
+System.out.println(test5);
+System.out.println(test6);
+//alignement des deux String a l'aide d'un width de 4 et aligne a gauche
+String test7 = String.format("W:%-4d X:%-4d", w, x);
+String test8 = String.format("y:%-4d z:%-4d", y, z);
+System.out.println(test7);
+System.out.println(test8);
+int nbTest = 1234567;
+s1=String.format("%d", nbTest);
+s2=String.format("%,d", nbTest);
+System.out.println(s1);
+System.out.println(s2);
+double dVal=1234567.0d;
+s3=String.format("%,.2f", dVal);
+System.out.println(s3);
+int flagVal = 123, flagValNeg = -146;
+s1 =String.format("%d", flagVal);
+s2 =String.format("%d", flagValNeg);
+System.out.println(s1);
+System.out.println(s2);
+s1 =String.format("% d", flagVal);
+s2 =String.format("% d", flagValNeg);
+System.out.println(s1);
+System.out.println(s2);
+s1 =String.format("%+d", flagVal);
+s2 =String.format("%+d", flagValNeg);
+System.out.println(s1);
+System.out.println(s2);
+s1 =String.format("%(d", flagVal);
+s2 =String.format("%(d", flagValNeg);
+System.out.println(s1);
+System.out.println(s2);
+s1 =String.format("% (d", flagVal);
+s2 =String.format("%(d", flagValNeg);
+System.out.println(s1);
+System.out.println(s2);
+```

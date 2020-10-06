@@ -467,7 +467,8 @@ for (int i = 0; i < resultOp.length; i++) {
 ```
 
 
-##Boucle for each
+## Boucle for each
+
 
 ```java
 float resultOp2[]= {10.0f, 20.0f, 15.0f}; 

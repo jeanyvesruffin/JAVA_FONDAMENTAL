@@ -362,7 +362,7 @@ if (valueA > valueB ) {
 * Negation : !
 
 
-##Condition d'operation logique
+## Condition d'operation logique
 
 
 * And : &&

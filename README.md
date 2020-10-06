@@ -84,7 +84,7 @@ System.out.println(unNombre);
 
 
 
-### Variables final
+## Variables final
 
 Une variable final est utilise, par exemple, pour definir une constante et ainsi eviter sa reaffectation par une autre valeur.
 
@@ -364,4 +364,113 @@ if (valueA > valueB ) {
 
 * And : &&
 * Or : ||
+
+## Etat d'un bloc et etendu des variables
+
+Les variables declarees a l'exterieur des blocs sont visibles a l'interieur de ceux-la, alors que les variable declarees dans un  bloc ne sera visible que dans le bloc.
+
+## Switch
+
+```java
+switch (value-to-test) {
+	case match-value-1:
+		instructions
+		break;
+	...
+	case match-value-N:
+		instructions
+		break;
+	...
+	default:
+		instructions
+}
+
+```
+
+## Boucle while 
+
+Exemple calcule factoriel
+
+
+```java
+int sommeValue = 4;
+int factoriel =1;
+while (sommeValue>1) {
+	factoriel *= sommeValue;
+	sommeValue--;
+}
+System.out.println(factoriel);
+
+
+```
+
+## Boucle do-while
+
+```java
+do {
+	System.out.print(iVal);
+	System.out.print(" * 2 = ");
+	iVal*=2;
+	System.out.println(iVal);
+}while (iVal < 25);
+```
+
+
+## Boucle For
+
+```java
+for (int i = 1; i < 100; i *= 2) {
+	System.out.println(i);
+	}
+```
+
+## Tableau
+
+Declaration
+
+```java
+double[] valeurDeDroite = { 100.0d, 65.241d, 451.81d, 815.21d };
+double[] valeurDeGauche = { 2.145d, 74.155d, 8.1d, 23489.12d };
+char[] opCode = { 'a', 's', 'm', 'd' };
+double[] resultOp = new double[opCode.length];
+System.out.println("longueur :"+resultOp.length);
+for (int i = 0; i < resultOp.length; i++) {
+	System.out.println(opCode[i]);
+	switch (opCode[i]) {
+	case 'a': {
+		resultOp[i] = valeurDeGauche[i] + valeurDeDroite[i];
+		break;
+	}
+	case 's': {
+		resultOp[i] = valeurDeGauche[i] - valeurDeDroite[i];
+		break;
+	}
+	case 'm': {
+		resultOp[i] = valeurDeGauche[i] * valeurDeDroite[i];
+		break;
+	}
+	case 'd': {
+		resultOp[i] = valeurDeDroite[i] != 0 ? valeurDeGauche[i] / valeurDeDroite[i] : 0.0d;
+		break;
+	}
+	default:
+		System.out.println(" Code invalide :" + opCode[i]);
+		resultOp[i] = 0.0d;
+		break;
+	}
+	System.out.println("result "+ resultOp[i]);
+}
+```
+
+
+## Boucle for each
+
+```java
+float resultOp2[]= {10.0f, 20.0f, 15.0f}; 
+float sum1 = 0.0f;
+for (float currentVal : resultOp2) {
+	sum1 += currentVal;
+	System.out.println(sum1);
+}
+```
 

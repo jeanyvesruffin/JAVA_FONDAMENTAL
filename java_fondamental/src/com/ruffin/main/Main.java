@@ -310,7 +310,13 @@ public class Main {
 		int nbConvertString = 25462;
 		String convertToString = String.valueOf(nbConvertString);
 		System.out.println(convertToString);
-
+		int valA1=100, valA2=200, valA3=300;
+		s1=String.format("%d %d %d", valA1, valA2, valA3);
+		System.out.println(s1);
+		s1=String.format("%3$d %2$d %1$d", valA1, valA2, valA3);
+		System.out.println(s1);
+		s1=String.format("%2$d %<d %1$d", valA1, valA2, valA3);
+		System.out.println(s1);
 	}
 
 	private static void manipulationEnLigneDeCommande(String[] args) {
@@ -391,7 +397,35 @@ public class Main {
 		double d = saisiValMot(parts[1]);
 		double e = saisiValMot(parts[2]);
 		double result = execute(c, d, e);
-		System.out.println(result);
+		displayResult(c,d,e,result);
+	}
+	private static void displayResult(char c, double d, double e, double result) {
+		char symbol = symbolFromOpCode(c);
+		System.out.println(symbol);
+//		StringBuilder builder = new StringBuilder(20);
+//		builder.append(d);
+//		builder.append(" ");
+//		builder.append(symbol);
+//		builder.append(" ");
+//		builder.append(e);
+//		builder.append(" = ");
+//		builder.append(result);
+//		String output = builder.toString();
+		String output = String.format("%.3f %c %.3f = %.3f", d,symbol,e,result);
+		System.out.println(output);
 	}
 
+	private static char symbolFromOpCode(char opCode) {
+		char [] opCodes = {'a','s','m','d'};
+		char [] symbols = {'+','-','*','/'};
+		char symbol =' ';
+		for (int index = 0; index < opCodes.length; index++) {
+			if (opCode == opCodes[index]) {
+				symbol = symbols[index];
+				break;
+			}
+		}
+		return symbol;
+				
+	}
 }

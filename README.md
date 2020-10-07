@@ -479,7 +479,7 @@ for (float currentVal : resultOp2) {
 }
 ```
 
-## Methodes
+##Methodes
 
 
 ```java
@@ -613,6 +613,26 @@ private static void performOperation(String[] parts) {
 
 * String builder
 
+Permet de construire une chaine de caratere piece par piece en ajoutant du texte a la fin avec *append* ou l'insertion de text avec *insert*.
+
+```java
+private static void displayResult(char c, double d, double e, double result) {
+	char symbol = symbolFromOpCode(c);
+	System.out.println(symbol);
+	StringBuilder builder = new StringBuilder(20);
+	builder.append(d);
+	builder.append(" ");
+	builder.append(symbol);
+	builder.append(" ");
+	builder.append(e);
+	builder.append(" = ");
+	builder.append(result);
+	String output = builder.toString();
+	System.out.println(output);
+}
+
+``` 
+
 
 
 ## Format des String
@@ -731,4 +751,24 @@ s1 =String.format("% (d", flagVal);
 s2 =String.format("%(d", flagValNeg);
 System.out.println(s1);
 System.out.println(s2);
+```
+
+* Indexe en argument
+
+Permet de reorganiser une chaine de caratere suivant leur position (attention 1 est la 1er position).
+
+```java
+int valA1=100, valA2=200, valA3=300;
+s1=String.format("%d %d %d", valA1, valA2, valA3);
+System.out.println(s1);
+s1=String.format("%3$d %2$d %1$d", valA1, valA2, valA3);
+System.out.println(s1);
+s1=String.format("%2$d %<d %1$d", valA1, valA2, valA3);
+System.out.println(s1);
+
+output:
+100 200 300
+300 200 100
+200 200 100
+
 ```

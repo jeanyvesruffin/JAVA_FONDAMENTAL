@@ -479,7 +479,7 @@ for (float currentVal : resultOp2) {
 }
 ```
 
-##Methodes
+## Methodes
 
 
 ```java

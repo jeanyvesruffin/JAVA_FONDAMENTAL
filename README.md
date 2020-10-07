@@ -488,7 +488,7 @@ type de retours name (list parametre type){
 }
 ```
 
-## Passage parametre a une methode via ligne de commande
+##Passage parametre a une methode via ligne de commande
 
 ```java
 if (args.length == 0) {
@@ -545,7 +545,7 @@ Exemple : a 20 10
 
 Lors de l'execution nous aurons le resultat 30 qui s'affichera.
 
-## Chaine de caractere (class String)
+##Chaine de caractere (class String)
 
 * Egalite entre deux String
 
@@ -635,7 +635,7 @@ private static void displayResult(char c, double d, double e, double result) {
 
 
 
-## Format des String
+##Format des String
 
 Nous voulons afficher Mes noeuveux ont 17, 15, 8 et 6 ans le plus jeune.
 

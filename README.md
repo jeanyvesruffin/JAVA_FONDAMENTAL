@@ -238,8 +238,8 @@ System.out.println(autreIncrem);
 
 +=, -=, *=, /=, %=
 
-+= permet d'ajouter une valeur à une variable 
--= permet de soustraire une valeur à une variable 
++= permet d'ajouter une valeur a une variable 
+-= permet de soustraire une valeur a une variable 
 ...etc
 
 ```java
@@ -772,3 +772,106 @@ output:
 200 200 100
 
 ```
+
+## Class Instant LocalDate et DateTimeFormatter
+
+Pour travailler avec les heures pour le suivi d'un evenement nous utilisons la class java *Instant*.
+
+La class Instant est optimisee pour l'horodatage d'evenement. Fonctionne bien pour la comparaison de temps relatif. Peut etre converti en types de date / heure plus complexes.
+
+```java
+private static void checkRelationship(Instant otherInstant) {
+	Instant nowInstant = Instant.now();
+	if(otherInstant.compareTo(nowInstant) > 0) {
+		System.out.println("Nosu sommes dans le future");
+	}
+	else if (otherInstant.compareTo(nowInstant)<0) {
+		System.out.println("Nous sommes dans le passe");
+	}else {
+		System.out.println("Maintenant");
+	}
+}
+```
+
+Concernant l'heure et date locals nous avons pas besoin de time zone. La class Date/ LocalDate, permet de trouver des difference, augmenter/ diminuer la valeur, manipuler le contenu, convertie en chaine de caratere.
+
+Pour representer date et heure global nous avons lameme chose a la difference que nous ne connaissons pas les times zones et permet son support et convertie les date suivant time zone.
+
+```java
+private static void manipQuandW(String[] parts) {
+	LocalDate startDate = LocalDate.parse(parts[1]);
+	// obtenir le nombre de jours que l'utilisateur souhaite ajouter
+	long daysToAdd = (long) saisiValMot(parts[2]);
+	startDate.plusDays(daysToAdd);
+	LocalDate newDate = startDate.plusDays(daysToAdd);
+	String output = String.format("%s plus %d days is %s", startDate, daysToAdd, newDate);
+	System.out.println(output);
+}
+```
+
+Changer le format de la date avec la class dateTimeFormatter.
+
+```java
+LocalDate today = LocalDate.now();
+System.out.println(today);
+DateTimeFormatter usDateFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+System.out.println("Format us "+today.format(usDateFormatter));
+```
+
+Et inversement
+
+```java
+LocalDate today = LocalDate.now();
+System.out.println(today);
+DateTimeFormatter usDateFormat = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+System.out.println("Format us "+today.format(usDateFormat));
+String usDateString ="07-04-2022";
+// LocalDate failedDate = LocalDate.parse(usDateString); // ERROR
+usDateFormat = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+LocalDate theDate = LocalDate.parse(usDateString, usDateFormat);
+System.out.println("La date "+theDate);
+```
+
+## Class Wrapper
+
+Les types primitifs sont incapables de fournir des méthodes pour exploiter ces datas.
+
+La class Wrapper permet de representer ces datas et:
+* peut contenir une valeur de données primitive
+* fournit des methodes
+* permet la compatibilite avec des aspects plus riches du systeme de type Java
+
+Chaque type primitifs a une class Wrapper est sont nommees comme leur type primitif mais commencent par une Majuscule (car sont des class).
+
+* Byte, Short, Integer, Long
+* Float, Double
+* Character
+* Boolean
+
+Les methodes de class wrapper gerent les operations courantes:
+* Conversion vers un autre type
+* Extraction de valeurs a partir de chaînes
+* recherche des valeurs min / max
+* Beaucoup d'autres
+
+```java
+static double saisiValMot(String val) {
+	String[] numeros = { "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf" };
+	double value = -1d;
+	for (int i = 0; i < numeros.length; i++) {
+		if (val.equals(numeros[i])) {
+			value = i + 1;
+			break;
+		}
+	}
+	if (value ==-1d) {
+		value=Double.parseDouble(val);
+	}
+	System.out.println("valeur entrer : " + value);
+	return value;
+}
+```
+
+## Classes  et Interfaces
+
+

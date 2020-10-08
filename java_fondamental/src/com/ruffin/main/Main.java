@@ -2,6 +2,10 @@ package com.ruffin.main;
 
 import java.util.Scanner;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Main {
 	/**
 	 * Ceci est un commentaire qui ne sera pas compilé mais generera la doc java
@@ -9,7 +13,20 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
+		////////////////////
+		/// Instant Class //
+		////////////////////
+		// checkRelationship(null);
+		
+		LocalDate today = LocalDate.now();
+		System.out.println(today);
+		DateTimeFormatter usDateFormat = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+		System.out.println("Format us "+today.format(usDateFormat));
+		String usDateString ="07-04-2022";
+		// LocalDate failedDate = LocalDate.parse(usDateString); // ERROR
+		usDateFormat = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+		LocalDate theDate = LocalDate.parse(usDateString, usDateFormat);
+		System.out.println("La date "+theDate);
 		/////////////////
 		// calculatrice//
 		/////////////////
@@ -310,12 +327,12 @@ public class Main {
 		int nbConvertString = 25462;
 		String convertToString = String.valueOf(nbConvertString);
 		System.out.println(convertToString);
-		int valA1=100, valA2=200, valA3=300;
-		s1=String.format("%d %d %d", valA1, valA2, valA3);
+		int valA1 = 100, valA2 = 200, valA3 = 300;
+		s1 = String.format("%d %d %d", valA1, valA2, valA3);
 		System.out.println(s1);
-		s1=String.format("%3$d %2$d %1$d", valA1, valA2, valA3);
+		s1 = String.format("%3$d %2$d %1$d", valA1, valA2, valA3);
 		System.out.println(s1);
-		s1=String.format("%2$d %<d %1$d", valA1, valA2, valA3);
+		s1 = String.format("%2$d %<d %1$d", valA1, valA2, valA3);
 		System.out.println(s1);
 	}
 
@@ -370,35 +387,51 @@ public class Main {
 
 	static double saisiValMot(String val) {
 		String[] numeros = { "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf" };
-		double value = 0d;
+		double value = -1d;
 		for (int i = 0; i < numeros.length; i++) {
 			if (val.equals(numeros[i])) {
-				value = i+1;
+				value = i + 1;
 				break;
 			}
 		}
-		System.out.println("valeur entrer : "+value);
+		if (value ==-1d) {
+			value=Double.parseDouble(val);
+		}
+		System.out.println("valeur entrer : " + value);
 		return value;
 	}
 
 	static void executeInteractively() {
-		System.out.println("Veuillez entrer  un type d'operation (a,m,s,d) ainsi que deux chiffres en lettre compris entre 0 et 9");
+		System.out.println(
+				"Veuillez entrer  un type d'operation (a,m,s,d) ainsi que deux chiffres en lettre compris entre 0 et 9");
 		Scanner sc = new Scanner(System.in);
 		String userInput = sc.nextLine();
-		String [] parts = userInput.split(" ");
+		String[] parts = userInput.split(" ");
 		performOperation(parts);
 	}
 
 	private static void performOperation(String[] parts) {
-		for (String string : parts) {
-			System.out.println(string);
-		}
 		char c = saisiCodeOperation(parts[0]);
-		double d = saisiValMot(parts[1]);
-		double e = saisiValMot(parts[2]);
-		double result = execute(c, d, e);
-		displayResult(c,d,e,result);
+		if (c == 'w') {
+			manipQuandW(parts);
+		} else {
+			double d = saisiValMot(parts[1]);
+			double e = saisiValMot(parts[2]);
+			double result = execute(c, d, e);
+			displayResult(c, d, e, result);
+		}
 	}
+
+	private static void manipQuandW(String[] parts) {
+		LocalDate startDate = LocalDate.parse(parts[1]);
+		// obtenir le nombre de jours que l'utilisateur souhaite ajouter
+		long daysToAdd = (long) saisiValMot(parts[2]);
+		startDate.plusDays(daysToAdd);
+		LocalDate newDate = startDate.plusDays(daysToAdd);
+		String output = String.format("%s plus %d days is %s", startDate, daysToAdd, newDate);
+		System.out.println(output);
+	}
+
 	private static void displayResult(char c, double d, double e, double result) {
 		char symbol = symbolFromOpCode(c);
 		System.out.println(symbol);
@@ -411,14 +444,14 @@ public class Main {
 //		builder.append(" = ");
 //		builder.append(result);
 //		String output = builder.toString();
-		String output = String.format("%.3f %c %.3f = %.3f", d,symbol,e,result);
+		String output = String.format("%.3f %c %.3f = %.3f", d, symbol, e, result);
 		System.out.println(output);
 	}
 
 	private static char symbolFromOpCode(char opCode) {
-		char [] opCodes = {'a','s','m','d'};
-		char [] symbols = {'+','-','*','/'};
-		char symbol =' ';
+		char[] opCodes = { 'a', 's', 'm', 'd' };
+		char[] symbols = { '+', '-', '*', '/' };
+		char symbol = ' ';
 		for (int index = 0; index < opCodes.length; index++) {
 			if (opCode == opCodes[index]) {
 				symbol = symbols[index];
@@ -426,6 +459,18 @@ public class Main {
 			}
 		}
 		return symbol;
-				
+
 	}
+
+	private static void checkRelationship(Instant otherInstant) {
+		Instant nowInstant = Instant.now();
+		if (otherInstant.compareTo(nowInstant) > 0) {
+			System.out.println("Nosu sommes dans le future");
+		} else if (otherInstant.compareTo(nowInstant) < 0) {
+			System.out.println("Nous sommes dans le passe");
+		} else {
+			System.out.println("Maintenant");
+		}
+	}
+
 }

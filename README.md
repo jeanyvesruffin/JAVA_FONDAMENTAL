@@ -872,6 +872,4 @@ static double saisiValMot(String val) {
 }
 ```
 
-## Classes  et Interfaces
-
 

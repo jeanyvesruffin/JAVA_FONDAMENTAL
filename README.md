@@ -904,6 +904,19 @@ public class MathEquation {
 	double result;
 	char opCode;
 
+	// constructeur avec parametre
+	public MathEquation(double leftVal, double rightVal, char opCodes) {
+		super();
+		this.leftVal = leftVal;
+		this.rightVal = rightVal;
+		this.opCode = opCodes;
+	}
+
+	// constructeur sans parametre
+	public MathEquation() {
+		super();
+	}
+
 	// methode d'execution du calcul, celle-ci ne retournera rien, elle sera utilise
 	// par la suite lors de l'instanciation de la class MathEquation dans la class
 	// Main
@@ -956,21 +969,53 @@ Pour utiliser une methode de classe il suffit d'utiliser le ".".
 
 
 ```java
-// Declaration variable (toursToParis) membre de la classe Flight
+// Declaration variable (toursToParis) de type Flight
 Flight toursToParis; // vol toursToParis: 0 passagers et 150 sieges
 // Instanciation Flight et initialisation toursToParis
 toursToParis = new Flight();
+
 // Declaration, Instanciation et initialisation parisToTours
 Flight parisToTours = new Flight(); // vol parisToTours 0 passagers et 150 sieges
-// utilisation de la methode addPassager() pour ajouter 1 sur le vol parisToTours
-parisToTours.addPassager();
-// Dans ce cas les valeurs des variables membre a la classe Flight de l'instanciation parisToTours seront
-// vol parisToTours 1 passagers et 150 sieges
-// l'autre ne change pas , vol parisToTours 0 passagers et 150 sieges
 
-// si l'on affecte toursToParis à parisToTours
+// utilisation de la methode addPassager() pour ajouter 1 sur le vol parisToTours
+result = parisToTours.addPassager();
+System.out.println("nombre de passage sur le vol parisToTours" + result); //1
+
+// si l'on affecte parisToTours à toursToParis
 toursToParis = parisToTours
-// les deux instance pointent alors vers le meme espace memoire et les valeurs des variables membre a la classe Flight de l'instanciation parisToTours seront alors
+// les deux instance pointent alors vers le meme espace memoire et les valeurs des variables membre a la classe Flight de chaque l'instanciation seront alors
 // vol parisToTours 0 passagers et 150 sieges
 // vol toursToParis: 0 passagers et 150 sieges
+
+// si l'on ajoute 2 au vol parisToTours et que l'on interroge toursToParis nous pourrons constater que les deux instance sont identique car elles pointent vers le meme espace memoire.
+
+parisToTours.addPassager();
+parisToTours.addPassager();
+System.out.println("nombre de passage sur le vol parisToTours" + result); // 2
+System.out.println("nombre de passage sur le vol toursToParis" + result); // 2
 ```
+
+Utilisation de notre class MathEquation dans la class Main
+
+```java
+// Nous allons stocker dans un tableau chaque instanciation de notre classe
+// MathEquation qui sera un tableau de 4 elements (representant les 4 equations)
+MathEquation[] equations = new MathEquation[4];
+
+// initialisation des elements du tableau d'equation
+equations[0] = create(100.0d, 50.0d, 'd');
+equations[1] = create(25.0d, 92.0d, 'a');
+equations[2] = create(225.0d, 17.0d, 's');
+equations[3] = create(11.0d, 3.0d, 'm');
+
+// Methode de creation de l'equation
+private static MathEquation create(double leftVal, double rightVal, char opCode) {
+MathEquation equation = new MathEquation();
+equation.leftVal = leftVal;
+equation.rightVal = rightVal;
+equation.opCode = opCode;
+return equation;
+	}
+```
+
+Nous pouvons desormer effacer les attributs declare dans la classe Main ainsi que les methodes de calcul.

@@ -8,11 +8,17 @@ public class MathEquation {
 	double result;
 	char opCode;
 
+	// constructeur avec parametre
 	public MathEquation(double leftVal, double rightVal, char opCodes) {
 		super();
 		this.leftVal = leftVal;
 		this.rightVal = rightVal;
 		this.opCode = opCodes;
+	}
+
+	// constructeur sans parametre
+	public MathEquation() {
+		super();
 	}
 
 	// methode d'execution du calcul, celle-ci ne retournera rien, elle sera utilise

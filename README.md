@@ -773,7 +773,7 @@ output:
 
 ```
 
-##Class Instant LocalDate et DateTimeFormatter
+## Class Instant LocalDate et DateTimeFormatter
 
 Pour travailler avec les heures pour le suivi d'un evenement nous utilisons la class java *Instant*.
 
@@ -832,7 +832,7 @@ LocalDate theDate = LocalDate.parse(usDateString, usDateFormat);
 System.out.println("La date "+theDate);
 ```
 
-##Class Wrapper
+## Class Wrapper
 
 Les types primitifs sont incapables de fournir des méthodes pour exploiter ces datas.
 

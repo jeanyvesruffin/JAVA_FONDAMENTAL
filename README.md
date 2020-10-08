@@ -874,7 +874,7 @@ static double saisiValMot(String val) {
 
 ## JAVA_POO les classes
 
-Les classes ont la syntaxe suivante:
+* Les classes ont la syntaxe suivante:
 
 ```java
 Flight.java
@@ -882,13 +882,95 @@ Flight.java
 class Flight(){
 	//Declaration variable
 	//Initialisation variables et constructeur
-	//Utilisation dans des methodes
+	//Declaration des methodes
 }
 
 ```
 
 Un constructeur n'a pas de type de retour.
 
-Refactorisation de la precedente application de calcul. 
-Nous renommons la classe Main en Init et commentons la classe main afin de la recreer.
-Nous creons une nouvelle classe que l'on nomme MathEquation
+*Refactorisation de la precedente application de calcul.*
+Nous creons une classe Main ou nous reprenons notre projet de calculatrice.
+Nous creons une nouvelle classe que l'on nomme MathEquation, cette classe sera par la suite instancie dans la classe main, afin de refactoriser le code.
+
+```java
+package com.ruffin.moteur_de_calcul;
+
+public class MathEquation {
+
+	// Declaration des attributs membre de la classes MathEquation
+	double leftVal;
+	double rightVal;
+	double result;
+	char opCode;
+
+	// methode d'execution du calcul, celle-ci ne retournera rien, elle sera utilise
+	// par la suite lors de l'instanciation de la class MathEquation dans la class
+	// Main
+	void execute() {
+		switch (opCode) {
+		case 'd': {
+			// attention on verifie que la valeur n'est pas 0 pour eviter la division par 0
+			// condition ternaire
+			result = rightVal != 0 ? leftVal / rightVal : 0.0d;
+			break;
+		}
+		case 'a': {
+			result = leftVal + rightVal;
+			break;
+		}
+		case 's': {
+			result = leftVal - rightVal;
+			break;
+		}
+		case 'm': {
+			result = leftVal * rightVal;
+			break;
+		}
+		default:
+			// on affiche une erreur par defaut
+			System.out.println("Invalide opCode: " + opCode);
+			result = 0.0d;
+			break;
+		}
+	}
+}
+```
+
+* Instanciation et utilisation d'une classe
+
+```java
+Flight toursToParis;
+toursToParis = new Flight();
+Flight parisToTours = new Flight();
+```
+
+*new*
+L'utilisation du mot cle new permet d'instancier une nouvelle classes (objet).
+Une instance est un emplacement memoire ou se trouve la definition des attributs membres a cette classe et execute le constructeur pour initiliser les variables.
+Si l'on affiche la valeur de l'ojet celle-ci nous retournera l'adresse memoire ou elle est stocke.
+Utilisation de la classe MathEquation.
+
+*.*
+Pour utiliser une methode de classe il suffit d'utiliser le ".".
+
+
+```java
+// Declaration variable (toursToParis) membre de la classe Flight
+Flight toursToParis; // vol toursToParis: 0 passagers et 150 sieges
+// Instanciation Flight et initialisation toursToParis
+toursToParis = new Flight();
+// Declaration, Instanciation et initialisation parisToTours
+Flight parisToTours = new Flight(); // vol parisToTours 0 passagers et 150 sieges
+// utilisation de la methode addPassager() pour ajouter 1 sur le vol parisToTours
+parisToTours.addPassager();
+// Dans ce cas les valeurs des variables membre a la classe Flight de l'instanciation parisToTours seront
+// vol parisToTours 1 passagers et 150 sieges
+// l'autre ne change pas , vol parisToTours 0 passagers et 150 sieges
+
+// si l'on affecte toursToParis à parisToTours
+toursToParis = parisToTours
+// les deux instance pointent alors vers le meme espace memoire et les valeurs des variables membre a la classe Flight de l'instanciation parisToTours seront alors
+// vol parisToTours 0 passagers et 150 sieges
+// vol toursToParis: 0 passagers et 150 sieges
+```

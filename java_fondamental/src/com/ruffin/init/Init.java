@@ -12,7 +12,7 @@ public class Init {
 	 * 
 	 * @param args
 	 */
-/*
+
 	public static void main(String[] args) {
 		////////////////////
 		/// Instant Class //
@@ -58,7 +58,7 @@ public class Init {
 		System.out.println("Test first line comment"); // Ce commentaire ne sera pas compile
 		/*
 		 * Ce bloc de commentaire ne sera pas compile
-		 
+		 */
 		System.out.println("Hello world");
 		// Utilisation de la variable unNombre
 		System.out.println("un nombre :" + unNombre);
@@ -336,7 +336,7 @@ public class Init {
 		s1 = String.format("%2$d %<d %1$d", valA1, valA2, valA3);
 		System.out.println(s1);
 	}
-*/
+
 	private static void manipulationEnLigneDeCommande(String[] args) {
 		char c = args[0].charAt(0);
 		double d = Double.parseDouble(args[1]);

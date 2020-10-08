@@ -1,4 +1,4 @@
-package com.ruffin.main;
+package com.ruffin.moteur_de_calcul;
 
 public class Main {
 

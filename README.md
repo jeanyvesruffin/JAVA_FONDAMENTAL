@@ -872,4 +872,23 @@ static double saisiValMot(String val) {
 }
 ```
 
+## JAVA_POO les classes
 
+Les classes ont la syntaxe suivante:
+
+```java
+Flight.java
+
+class Flight(){
+	//Declaration variable
+	//Initialisation variables et constructeur
+	//Utilisation dans des methodes
+}
+
+```
+
+Un constructeur n'a pas de type de retour.
+
+Refactorisation de la precedente application de calcul. 
+Nous renommons la classe Main en Init et commentons la classe main afin de la recreer.
+Nous creons une nouvelle classe que l'on nomme MathEquation

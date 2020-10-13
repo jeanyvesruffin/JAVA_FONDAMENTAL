@@ -26,8 +26,10 @@ public class Main {
 
 		for (MathEquation mathEquation : equations) {
 			mathEquation.execute();
-			System.out.println(mathEquation.result);
+			System.out.println(mathEquation.getLeftVal() + String.valueOf(mathEquation.getOpCode()) + mathEquation.getRightVal());
+			System.out.println("resultats equation : "  + mathEquation.result);
 		}
+		
 		
 		// appel methode execute qui permet de calculer chaque elements du tableau avec
 		// son type de calcul associe

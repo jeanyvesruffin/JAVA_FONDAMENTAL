@@ -1033,10 +1033,41 @@ for (MathEquation mathEquation : equations) {
 
 ```
 
-### Encapsulation et accesseur de cette capsule
+### Encapsulation
 
 
+1 Modificateur: pas de modificateur
+* Visibilite: uniquement dans son propre package
+* Utilisation de la classe:	Oui
+* Utilisation des attributs: Oui
+
+2 Modificateur: public
+* Visibilite: Partout
+* Utilisation de la classe:	Oui
+* Utilisation des attributs: Oui
+
+3 Modificateur: private
+* Visibilite: seulement dans la classe declare
+* Utilisation de la classe:	Non (comme prive s'applique aux classes de haut niveau; private est disponible pour les classes imbriquees)
+* Utilisation des attributs: Oui
 
 
+### References special
 
+* This: Est la reference implicite de l'objet courant.
+* Nul: Fait reference a un objet non cree
+
+###  Getters (Accessors) et Setters (Mutators)
+
+Exemples:
+
+```java
+	public double getResult() {
+		return result;
+	}
+
+	public void setResult(double result) {
+		this.result = result;
+	}
+```
 

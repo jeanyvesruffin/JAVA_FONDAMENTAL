@@ -24,6 +24,11 @@ public class Main {
 		equations[2] = create(225.0d, 17.0d, 's');
 		equations[3] = create(11.0d, 3.0d, 'm');
 
+		for (MathEquation mathEquation : equations) {
+			mathEquation.execute();
+			System.out.println(mathEquation.result);
+		}
+		
 		// appel methode execute qui permet de calculer chaque elements du tableau avec
 		// son type de calcul associe
 		// et remplie le tableau de resultats

@@ -872,9 +872,9 @@ static double saisiValMot(String val) {
 }
 ```
 
-## JAVA_POO les classes
+## JAVA_POO les classes
 
-* Les classes ont la syntaxe suivante:
+### Les classes ont la syntaxe suivante:
 
 ```java
 Flight.java
@@ -950,7 +950,7 @@ public class MathEquation {
 }
 ```
 
-* Instanciation et utilisation d'une classe
+### Instanciation et utilisation d'une classe
 
 ```java
 Flight toursToParis;
@@ -997,9 +997,11 @@ System.out.println("nombre de passage sur le vol toursToParis" + result); // 2
 
 Utilisation de notre class MathEquation dans la class Main
 
+Nous allons stocker dans un tableau chaque instanciation de notre classe.
+MathEquation qui sera un tableau de 4 elements (representant les 4 equations)
+
 ```java
-// Nous allons stocker dans un tableau chaque instanciation de notre classe
-// MathEquation qui sera un tableau de 4 elements (representant les 4 equations)
+
 MathEquation[] equations = new MathEquation[4];
 
 // initialisation des elements du tableau d'equation
@@ -1019,3 +1021,22 @@ return equation;
 ```
 
 Nous pouvons desormer effacer les attributs declare dans la classe Main ainsi que les methodes de calcul.
+
+Puis utiliser la methode execute de la classe MathEquation, a l'aide d'une boucle for each, qui pour chaque element du tableau d'equation executera la methode execute de la classe MathEquation afin de retourner le resultat dans la console.
+
+
+```java
+for (MathEquation mathEquation : equations) {
+	mathEquation.execute();
+	System.out.println(mathEquation.result);
+}
+
+```
+
+### Encapsulation et accesseur de cette capsule
+
+
+
+
+
+

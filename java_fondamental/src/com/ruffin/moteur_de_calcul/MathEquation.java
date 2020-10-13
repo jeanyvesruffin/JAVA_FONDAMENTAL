@@ -3,24 +3,32 @@ package com.ruffin.moteur_de_calcul;
 public class MathEquation {
 
 	// Declaration des attributs membre de la classes MathEquation
-	double leftVal;
-	double rightVal;
-	double result;
-	char opCode;
-
-	// constructeur avec parametre
-	public MathEquation(double leftVal, double rightVal, char opCodes) {
-		super();
-		this.leftVal = leftVal;
-		this.rightVal = rightVal;
-		this.opCode = opCodes;
-	}
+	private double leftVal;
+	private double rightVal;
+	private double result;
+	private char opCode;
+	private char test;
 
 	// constructeur sans parametre
 	public MathEquation() {
-		super();
+	}
+	// constructeur avec parametres
+	public MathEquation(double leftVal, double rightVal, char opCode) {
+		this(opCode);
+		this.leftVal = leftVal;
+		this.rightVal = rightVal;
 	}
 
+	// constructeur avec parametre
+	public MathEquation(char opCode) {
+		this();
+		this.opCode =opCode;
+	}
+
+	{
+		this.test ='f';
+	}
+	
 	// methode d'execution du calcul, celle-ci ne retournera rien, elle sera utilise
 	// par la suite lors de l'instanciation de la class MathEquation dans la class
 	// Main
@@ -83,5 +91,11 @@ public class MathEquation {
 
 	public void setOpCode(char opCode) {
 		this.opCode = opCode;
+	}
+	public char getTest() {
+		return test;
+	}
+	public void setTest(char test) {
+		this.test = test;
 	}
 }

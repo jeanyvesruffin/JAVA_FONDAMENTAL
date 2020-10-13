@@ -1062,12 +1062,42 @@ for (MathEquation mathEquation : equations) {
 Exemples:
 
 ```java
-	public double getResult() {
-		return result;
-	}
+public double getResult() {
+	return result;
+}
 
-	public void setResult(double result) {
-		this.result = result;
-	}
+public void setResult(double result) {
+	this.result = result;
+}
 ```
 
+### Enchainement de constructeur
+
+Exemple:
+
+```java
+// constructeur sans parametre
+public MathEquation() {
+}
+// constructeur avec parametres
+public MathEquation(double leftVal, double rightVal, char opCode) {
+	this(opCode);
+	this.leftVal = leftVal;
+	this.rightVal = rightVal;
+}
+
+// constructeur avec parametre
+public MathEquation(char opCode) {
+	this.opCode =opCode;
+}
+```
+
+### Initialisation de blocs
+
+Nous pouvons initialiser un bloc comme ci-dessous afin d'initialiser un attribut du constructeur. Dans ce cas il esst necessaire de faire appel à this(); dans chaque constructeur afin qu'il herite du constructeur par defaut.
+
+```java
+{
+	this.test ='f';
+}
+```

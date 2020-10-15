@@ -1254,7 +1254,7 @@ class ClasseComplete extends ClasseAbstraite {
 * La declaration d'une valeur cree l'instance
 * Peut tirer parti des constructeurs
 
-#### Creer des relations abstraites avec des interfaces
+### Creer des relations abstraites avec des interfaces
 
 *Une interface definit un contrat*
 * Fournit une liste d'operations

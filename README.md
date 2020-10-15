@@ -1435,7 +1435,7 @@ public class ClassePrincipale18 {
 *Les classes anonymes sont des classes interne*
 Associe a l'instance de classe contenant
 
-### Trucs et astuces
+### Trucs et astuces
 
 *Comparer des Objets*
 * En effet '==' permet uniquement de comparer les references des objets (adresse memoire)

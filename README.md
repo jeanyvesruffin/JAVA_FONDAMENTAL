@@ -1101,3 +1101,175 @@ Nous pouvons initialiser un bloc comme ci-dessous afin d'initialiser un attribut
 	this.test ='f';
 }
 ```
+
+### Static
+
+*Membres statiques*
+* partage a l'echelle de la classe
+* declare a l'aide du mot-cle **static**
+
+*champ statique*
+* valeurs non associees à une instance
+* toutes les instances accedent a la meme valeur
+
+*methode statique*
+* effectuer une action non liee a une instance
+* ne peut acceder qu'aux membres statiques
+
+*instruction d'importation statique*
+* permet d'utiliser des methodes statiques sans etre qualifiees de classe
+
+*blocs d'initialisation statiques*
+* effectuer une initialisation de type unique
+* executer avant la premiere utilisation du type
+
+### Methodes
+
+*Les objets sont passes par reference*
+* La reference est copiee dans la methode
+
+*Modifications de la methode de la reference*
+* Non visible en dehors de la methode
+
+*Modifications de la methode a l'objet reference*
+* Rester visible en dehors de la methode
+
+*Surcharge* **@Override**
+* Plusieurs versions d'une methode ou d'un constructeur au sein d'une classe
+* Chacun doit avoir une signature unique
+
+*Parties de la signature*
+* Nom de la methode
+* Nombre de parametres
+* Type de chaque parametre
+
+*Listes de parametres de longueur variable*
+* Placer l'ellipse apres le type de parametre
+* Doit etre le dernier parametre
+* La methode reçoit sous forme de tableau
+
+### Heritage de classe (extends)
+
+*L'heritage d'une classe d'une autre classe*
+* La classe derive a les caracteristiques de la classe de base
+* La classe derive peut ajouter une specialisation
+
+*Heritage et type de reference*
+* Peut affecter une instance de classe derivee a une reference de classe de base
+* Fonctionnalites disponibles limitees par reference
+
+*La classe derivee peut surcharger les methodes*
+* Doit avoir la meme signature
+* Methode de classe derivee utilisee alors meme qu'une reference de classe de base est utilisee
+
+*Class Object*
+* Est a la racine de la hierarchie des classes Java
+* Chaque classe a des caracteristiques d'objet
+* Fournit des methodes que les classes surcharge generalement
+
+*Verification de l'egalite*
+* L'operateur d'egalite verifie les references
+* Remplacer la methode equals pour fournir des comparaisons d'egalite specifiques a une classe
+
+### Reference super
+
+*Fait reference a l'objet actuel.*
+* Traite comme une instance de la classe de base.
+
+*Empecher l'heritage*
+* Marquer la classe comme **Final**
+
+*Empecher le remplacement de methode*
+* Marquer la methode comme **Final**
+
+*Exiger l'heritage*
+* Marquer la classe comme **Abstract**
+
+*Exiger le remplacement de methode*
+* Marquer la methode comme **Abstract**
+
+*Les constructeurs ne sont pas herites*
+* Chaque classe a ses propres constructeurs
+
+*Construire une instance de classe derivee*
+* Un constructeur de classe de base toujours appele
+* Par defaut, appelle la version sans argument
+* Peut explicitement appeler un constructeur specifique
+
+### Enum
+
+*Types d'enumeration*
+* Definie une liste finie de valeurs valides
+
+*Prise en charge de la logique conditionnelle.*
+* Peut effectuer des tests d'egalite
+* Fonctionne bien avec les instructions switch
+
+*Les valeurs d'enumeration sont ordonnees*
+* La premiere valeur est la plus basse
+* La derniere valeur est la plus elevee
+* Peut effectuer des comparaisons basees sur les commandes avec **compareTo**
+
+*Les types enum sont des classes*
+* Heriter de la classe Enum de java
+* Peut definir des membres
+
+*Enum valeurs*
+* Sont des instances de type enum
+* La declaration d'une valeur cree l'instance
+* Peut tirer parti des constructeurs
+
+#### Creer des relations abstraites avec des interfaces
+
+*Une interface definit un contrat*
+* Fournit une liste d'operations
+* Pas de focus sur les details de l'implementation
+* Les classes implementent des interfaces
+* Conformie au contrat
+* Fournie les methodes necessaires
+
+*Interfaces generiques*
+* Permet un typage plus forte
+* Permet de specialiser l'interface sur un type
+
+*Une classe peut implementer plusieurs interfaces*
+* Separez avec un coma
+* Peut en implementer autant que necessaire
+
+*Declaration des interfaces*
+* Utiliser le mot-cle de **interface**
+* Membres implicitement publics
+
+*Les attributs*
+* Valeurs constantes
+
+*Methodes*
+* Nom, paramètres et type de retour
+* N'ont normalement pas de corps
+
+*Methode par defaut*
+* Avoir un corps
+* Permet d'ajouter des methodes a l'interface sans casser les classes existantes
+
+
+### Types imbriqués et classes anonymes
+
+*Types imbriques*
+* Membres de type englobant
+* Peut acceder aux membres prives de type englobant
+
+*Types d'imbrication pour nommer la portee (scope)*
+* Nom des portees dans le type englobant
+* Aucune relation entre les instances de type imbrique et de type englobant
+
+*Classe Inner*
+* Relation etroite avec la classe englobante
+* Une instance de classe imbriquee associee a une instance de classe englobant
+
+*Classes anonymes*
+* Declare dans le cadre de leur creation
+* Peut implementer des methodes
+* Peut surcharger les methodes
+
+*Les classes anonymes sont des classes Inner*
+Associe a l'instance de classe contenant

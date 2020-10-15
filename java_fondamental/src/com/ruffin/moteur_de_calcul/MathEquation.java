@@ -1,6 +1,6 @@
 package com.ruffin.moteur_de_calcul;
 
-public class MathEquation {
+class MathEquation {
 
 	// Declaration des attributs membre de la classes MathEquation
 	private double leftVal;

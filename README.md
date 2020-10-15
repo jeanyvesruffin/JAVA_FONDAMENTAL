@@ -1036,7 +1036,7 @@ for (MathEquation mathEquation : equations) {
 ### Encapsulation
 
 
-1 Modificateur: pas de modificateur
+1 Modificateur: pas de modificateur (package)
 * Visibilite: uniquement dans son propre package
 * Utilisation de la classe:	Oui
 * Utilisation des attributs: Oui
@@ -1148,6 +1148,17 @@ Nous pouvons initialiser un bloc comme ci-dessous afin d'initialiser un attribut
 * Doit etre le dernier parametre
 * La methode reçoit sous forme de tableau
 
+*Les modificateurs de méthodes sont :*
+* public, la methode est accessible aux methodes des autres classes.
+* private, l'usage de la methode est reserve aux autres methodes de la même classe
+* protected, la methode ne peut être invoquee que par des methodes de la classe ou de ses sous-classes
+* final, la methode ne peut être modifiee (redefinition lors de l'heritage interdite)
+* static, la methode appartient simultanement a tous les objets de la classe (comme une constante declaree a l'interieur de la classe). Il est inutile d'instancier la classe pour appeler la methode mais la methode ne peut pas manipuler de variable d'instance. Elle ne peut utiliser que des variables de classes.
+* synchronized, la methode fait partie d'un thread. Lorsqu'elle est appelee, elle barre l'accès a son instance. L'instance est a nouveau liberee a la fin de son execution.
+* native, le code source de la methode est ecrit dans un autre langage.
+
+
+
 ### Heritage de classe (extends)
 
 *L'heritage d'une classe d'une autre classe*
@@ -1171,9 +1182,9 @@ Nous pouvons initialiser un bloc comme ci-dessous afin d'initialiser un attribut
 * L'operateur d'egalite verifie les references
 * Remplacer la methode equals pour fournir des comparaisons d'egalite specifiques a une classe
 
-### Reference super
+### Reference super, abstract et final
 
-*Fait reference a l'objet actuel.*
+*super fait reference a l'objet actuel.*
 * Traite comme une instance de la classe de base.
 
 *Empecher l'heritage*
@@ -1188,6 +1199,30 @@ Nous pouvons initialiser un bloc comme ci-dessous afin d'initialiser un attribut
 *Exiger le remplacement de methode*
 * Marquer la methode comme **Abstract**
 
+Le mot cle abstract s'applique aux methodes et aux classes.
+
+Abstract indique que la classe ne pourra être instanciee telle quelle. De plus, toutes les methodes de cette classe abstract ne sont pas implementees et devront être redefinies par des methodes complètes dans ses sous-classes.
+
+Abstract permet de creer une classe qui sera une sorte de moule. Toutes les classes derivees pourront profiter des methodes heritees et n'auront a implementer que les methodes declarees abstract.
+
+Une methode abstraite est une methode declaree avec le modificateur abstract et sans corps. Elle correspond a une methode dont on veut forcer l'implementation dans une sous-classe. L'abstraction permet une validation du codage : une sous-classe sans le modificateur abstract et sans definition explicite d'une ou des methodes abstraites genère une erreur de compilation.
+
+Une classe est automatiquement abstraite dès qu'une de ses methodes est declaree abstraite. Il est possible de definir une classe abstraite sans methodes abstraites.
+
+```java
+abstract class ClasseAbstraite {
+  ClasseAbstraite() { ... //code du constructeur }
+  void methode() { ... // code partagé par tous les descendants }
+  abstract void methodeAbstraite();
+}
+
+class ClasseComplete extends ClasseAbstraite {
+  ClasseComplete() { super(); ... }
+  void methodeAbstraite() { ... // code de la méthode }
+  // void methode est héritée
+}
+
+```
 *Les constructeurs ne sont pas herites*
 * Chaque classe a ses propres constructeurs
 
@@ -1236,6 +1271,16 @@ Nous pouvons initialiser un bloc comme ci-dessous afin d'initialiser un attribut
 * Separez avec un coma
 * Peut en implementer autant que necessaire
 
+```java
+public interface ServiceSpecial extends Service, Implemnt2 ... {
+  
+  default void afficherNom() {
+    System.out.println("Nom du service special : inconnu");
+  }
+}
+```
+
+
 *Declaration des interfaces*
 * Utiliser le mot-cle de **interface**
 * Membres implicitement publics
@@ -1247,9 +1292,41 @@ Nous pouvons initialiser un bloc comme ci-dessous afin d'initialiser un attribut
 * Nom, paramètres et type de retour
 * N'ont normalement pas de corps
 
-*Methode par defaut*
+```java
+interface AfficheType {
+    void afficherType();
+}
+
+class Personne implements AfficheType {
+    
+    public void afficherType() {
+        System.out.println(" Je suis une personne ");
+    }
+}
+
+class Voiture implements AfficheType {
+
+    public void afficherType() {
+        
+        System.out.println(" Je suis une voiture ");
+    }
+}
+
+```
+
+*Methode par defaut (a partir de java 8)*
 * Avoir un corps
 * Permet d'ajouter des methodes a l'interface sans casser les classes existantes
+* Il est possible d'utiliser les methodes par defaut (default method) dans une interface. Elles permettent de definir le comportement d'une methode dans l'interface dans laquelle elle est definie. Si aucune implementation de la methode n'est fournie dans une classe qui implemente l'interface alors c'est le comportement defini dans l'interface qui sera utilise.
+
+
+```java
+public interface MonInterface {
+  default void maMethode() {
+    System.out.println("Implementation par defaut");
+  }
+
+```
 
 
 ### Types imbriqués et classes anonymes
@@ -1262,14 +1339,145 @@ Nous pouvons initialiser un bloc comme ci-dessous afin d'initialiser un attribut
 * Nom des portees dans le type englobant
 * Aucune relation entre les instances de type imbrique et de type englobant
 
-*Classe Inner*
+*Classe interne*
 * Relation etroite avec la classe englobante
 * Une instance de classe imbriquee associee a une instance de classe englobant
+
+Ce sont des classes qui sont définies dans une autre classe. Les difficultés dans leur utilisation concernent leur visibilité et leur accès aux membres de la classe dans laquelle elles sont définies.
+
+```java
+public class ClassePrincipale1 {
+  class ClasseInterne {
+  }
+}
+```
+Les classes internes sont particulierement utiles pour :
+* permettre de definir une classe a l'endroit ou une seule autre en a besoin
+* definir des methodes de type callback d'une façon generale
+
+```java
+public class ClassePrincipale8 {
+  public class ClasseInterne {
+  }
+
+  public static void main(String[] args) {
+    ClassePrincipale8 cp = new ClassePrincipale8();
+    ClassePrincipale8.ClasseInterne ci = cp. new ClasseInterne() ;
+    System.out.println(ci.getClass().getName());
+  }
+}
+// java ClassePrincipale8
+// ClassePrincipale8$ClasseInterne
+```
+
+*Classes interne static*
+Les classes internes non statiques (member inner-classes) sont definies dans une classe dite « principale » (top-level class) en tant que membres de cette classe. Leur avantage est de pouvoir acceder aux autres membres de la classe principale même ceux declares avec le modificateur private.
+
+```java
+public class ClassePrincipale20 {
+  private int valeur = 1;
+  
+  class ClasseInterne {
+    public void afficherValeur() {
+      System.out.println("valeur = "+valeur);  
+    }
+  }
+
+  public static void main(String[] args) {
+    ClassePrincipale20 cp = new ClassePrincipale20();
+    ClasseInterne ci = cp. new ClasseInterne();
+    ci.afficherValeur();
+  }  
+}
+// valeur = 1
+```
+
+*Classe interne ayant les meme nom d'attribut*
+
+Il faut utiliser la version qualifiee du mot cle this pour acceder au membre de la classe principale. La qualification se fait avec le nom de la classe principale ou plus generalement avec le nom qualifie d'une des classes englobantes.
+
+
+```java
+
+public class ClassePrincipale18 {
+  int var = 5;
+  
+  class ClasseInterne {
+    int var = 3;
+
+    public void affiche() {
+      System.out.println("var                          = "+var);
+      System.out.println("this.var                     = "+this.var);
+      System.out.println("ClassePrincipale18.this.var  = "
+        +ClassePrincipale18.this.var);
+    }
+  }
+
+  ClasseInterne ci = this. new ClasseInterne();
+
+  public static void main(String[] args) {
+    ClassePrincipale18 cp = new ClassePrincipale18();
+    ClasseInterne ci = cp. new ClasseInterne();  
+    ci.affiche();
+  }
+}
+// var                          = 3
+// this.var                     = 3
+// ClassePrincipale18.this.var  = 5
+```
+
 
 *Classes anonymes*
 * Declare dans le cadre de leur creation
 * Peut implementer des methodes
 * Peut surcharger les methodes
 
-*Les classes anonymes sont des classes Inner*
+*Les classes anonymes sont des classes interne*
 Associe a l'instance de classe contenant
+
+### Trucs et astuces
+
+*Comparer des Objets*
+* En effet '==' permet uniquement de comparer les references des objets (adresse memoire)
+* Pour comparer l'egalite des variables de deux instances, il faut munir la classe d'une methode a cet effet : la methode equals() heritee de Object.
+
+Pour s'assurer que deux objets sont de la même classe, il faut utiliser la methode getClass() de la classe Object dont toutes les classes heritent.
+
+
+
+```java
+Rectangle r1 = new Rectangle(100,50);
+Rectangle r2 = new Rectangle(100,50);
+Boolean s1,s2;
+s1 = r1 == r1;
+s2 = r1 == r2;
+System.out.println("Test comparaison reference de 2 objets de type Rectangles avec r1 == r1 : " + s1); // true
+System.out.println("Test comparaison reference de 2 objets de type Rectangles avec r1 == r2 : " + s2); // false
+System.out.println("Test comparaison 2 objets de type Rectangles avec r1.getClass().equals(r2.getClass()) : " + r1.getClass().equals(r2.getClass())); // true
+```
+
+*InstanceOf*
+
+L'opérateur instanceof permet de déterminer la classe de l'objet qui lui est passé en paramètre.
+
+```java
+Double testDouble = 0.25d;
+if (testDouble instanceof Double) {
+	System.out.println("testDouble est de la classe Double");
+}
+```
+
+*Conseils sur l'heritage*
+
+Lors de la creation d'une classe « mere » il faut tenir compte des points suivants :
+
+* la definition des acces aux variables d'instances, très souvent privees, doit etre reflechie entre protected et private
+
+* pour empecher la redefinition d'une methode ou sa surcharge, il faut la declarer avec le modificateur final
+
+*Lors de la creation d'une classe fille, pour chaque methode heritee qui n'est pas final, il faut envisager les cas suivants :*
+
+* la methode heritee convient a la classe fille : on ne doit pas la redefinir
+* la methode heritee convient mais partiellement du fait de la specialisation apportee par la classe fille : il faut la redefinir voire la surcharger. La plupart du temps une redefinition commencera par appeler la methode heritee (en utilisant le mot cle super) pour garantir l'evolution du code
+* la methode heritee ne convient pas : il faut redefinir ou surcharger la methode sans appeler la methode heritee lors de la redefinition.
+

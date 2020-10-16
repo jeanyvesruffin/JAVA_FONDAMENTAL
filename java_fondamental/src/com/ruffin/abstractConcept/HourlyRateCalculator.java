@@ -1,4 +1,4 @@
-package com.ruffin.interfaceEtAbstract;
+package com.ruffin.abstractConcept;
 
 public class HourlyRateCalculator extends RevenueCalculator {
 	public static final double HOURLY_RATE = 50;

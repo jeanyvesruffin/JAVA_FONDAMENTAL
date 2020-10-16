@@ -1608,10 +1608,8 @@ Interfaces:
 
 Les objets d'une classe enfant peuvent être references par la classe de leur parent, les methodes appelees sur le parent se lient a l'implementation de l'enfant.
 
-### Refactorisation du code
+### Refactorisation du code avec une classe abstraite
 
-* Avec des classes abstraites
-* Avec des Interfaces
 
 1 . Creer la classe abstraite RevenueCalculator
 
@@ -1712,9 +1710,24 @@ public class RevenueCalculatorRunner {
 
 ```
 
+4 . Exemple de polymorphisme
+
+```java
+// Exemple de polymorphisme
+RevenueCalculator revenueCalculator = new HourlyRateCalculator(50);
+final double price = revenueCalculator.calculate(clientEngagement);
+System.out.println("proce polymorphisme : " + price);
+```
+
+Etant donnee que HourlyRate est une extension de RevenueCalculator, nous pouvons a l'aide du polymorphisme appeler la methode calculate().
+
+### Refactorisation du code avec une interface
+
+Cela est le meme code que precedemment a la difference qu'on lui d'extends on implements et au lui d'abstract on interface
 
 
- 
+**Les interfaces sont previlegie au Abstract**
+
 
 ## Trucs et astuces
 

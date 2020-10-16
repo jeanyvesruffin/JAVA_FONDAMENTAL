@@ -1,4 +1,4 @@
-package com.ruffin.interfaceEtAbstract;
+package com.ruffin.abstractConcept;
 
 public class RoyaltyPercentageCalculator extends RevenueCalculator {
 

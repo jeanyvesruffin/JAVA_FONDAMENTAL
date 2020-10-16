@@ -1,4 +1,4 @@
-package com.ruffin.interfaceEtAbstract;
+package com.ruffin.abstractConcept;
 
 public class FixedFeeCalculator extends RevenueCalculator {
 	public static final double STANDARD_FEE = 500;

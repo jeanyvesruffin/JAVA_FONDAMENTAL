@@ -2,42 +2,34 @@ package com.ruffin.interfaceAndAbstract;
 
 public class ClientEngagement {
 
+	private final String client;
+	private final int hoursWorked;
+	private final double anticipatedRevenue;
 
-	private String client;
-	private int hoursWorked;
-	private int anticipatedRevenue;
-	
-	public ClientEngagement(String client, int hoursWorked, int anticipatedRevenue) {
+	public ClientEngagement(String client, int hoursWorked, double anticipatedRevenue) {
 		super();
 		this.client = client;
 		this.hoursWorked = hoursWorked;
 		this.anticipatedRevenue = anticipatedRevenue;
 	}
-	
+
 	public String getClient() {
 		return client;
 	}
-	
-	public void setClient(String client) {
-		this.client = client;
-	}
-	
+
 	public int getHoursWorked() {
 		return hoursWorked;
 	}
-	
-	public void setHoursWorked(int hoursWorked) {
-		this.hoursWorked = hoursWorked;
-	}
-	
-	public int getAnticipatedRevenue() {
+
+	public double getAnticipatedRevenue() {
 		return anticipatedRevenue;
+	}	
+
+	@Override
+	public 		String toString() {
+		return "Contenu de la classe com.ruffin.interfaceAndAbstract.ClientEngagement :" +
+				"Client : '"+client+ '\'' +
+				", hoursWorked : " + hoursWorked +
+				", anticipatedRevenu : " + anticipatedRevenue;
 	}
-	
-	public void setAnticipatedRevenue(int anticipatedRevenue) {
-		this.anticipatedRevenue = anticipatedRevenue;
-	}
-	
-	
-	
 }

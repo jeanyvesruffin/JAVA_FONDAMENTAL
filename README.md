@@ -1440,9 +1440,128 @@ Associe a l'instance de classe contenant
 
 ## Retour sur les Interfaces et Abstracts
 
-### Etude d'un code sans ces concepts
+### Etude d'un code sans ces concepts (attention ce code n'est pas correct et sera refactorise)
 
+Le programme permet de connaitre le revenu d'un engagement client sur un projet.
 
+Cela est calcule a l'aide de la classe ClientEngagement, avec ces attributs :
+* nom du client (String client)
+* de son nombre d'heures de travail (int hoursWorked)
+* d'un montant de revenu anticipe (double anticipatedRevenue).
+
+Ces attributs sont des constantes et doivent etre finaux.
+
+On initialise les attributs membres de la classe à l'aide de son constructeur et nous creons les getters, setters et redefinissons la methode toString() (Override).
+
+```java
+ClientEngagement.java
+package com.ruffin.interfaceAndAbstract;
+
+public class ClientEngagement {
+
+	private final String client;
+	private final int hoursWorked;
+	private final double anticipatedRevenue;
+
+	public ClientEngagement(String client, int hoursWorked, double anticipatedRevenue) {
+		super();
+		this.client = client;
+		this.hoursWorked = hoursWorked;
+		this.anticipatedRevenue = anticipatedRevenue;
+	}
+
+	public String getClient() {
+		return client;
+	}
+
+	public int getHoursWorked() {
+		return hoursWorked;
+	}
+
+	public double getAnticipatedRevenue() {
+		return anticipatedRevenue;
+	}	
+
+	@Override
+	public 		String toString() {
+		return "Contenu de la classe com.ruffin.interfaceAndAbstract.ClientEngagement :" +
+				"Client : '"+client+ '\'' +
+				", hoursWorked : " + hoursWorked +
+				", anticipatedRevenu : " + anticipatedRevenue;
+	}
+}
+```
+
+Exemple, du client ruffin ou nous estimerons le temps de travail pour son projet de 100 heures et cela coutera 15000$ au client ruffin.
+
+```java
+RevenueCalculatorRunner.java
+public class RevenueCalculatorRunner {
+
+	public static void main(String[] args) {
+		
+		final ClientEngagement clientEngagement = new ClientEngagement("ruffin", 100, 15000);
+
+	}
+}
+```
+
+Nous allons evaluer trois modeles de calcule different de revenu:
+* Revenu par heure (hourly)
+* Revenu avec une tartification forfaitaire (FixedFee)
+* Revenu avec un pourcentage de royalty (royalyPercentage)
+
+Pour le calcul du revenu par heure, nous allons faire appel à la methode price de la classe RevenueCalculator, qui prendra en parametre le type de calcule (ici Hourly) ainsi qu'un ClientEngagement, pour faire le calcule nombre d'heure travaille par taux horaire).
+
+ ```java
+RevenueCalculatorRunner.java
+// Prix horaire
+final double hourlyPrice = RevenueCalculator.price("Hourly", clientEngagement);
+System.out.println("Prix horaire : " + hourlyPrice);
+ ```
+
+Calcul:
+
+ ```java
+RevenueCalculator.java
+package com.ruffin.interfaceAndAbstract;
+
+public class RevenueCalculator {
+
+	private static final double HOURLY_RATE = 50;
+	private static final double FIXED_FREE = 500;
+	private static final double ROYALTY_PERCENTAGE = 0.15;
+
+	public static double price(final String methodeCalcul, final ClientEngagement clientEngagement) {
+		switch (methodeCalcul) {
+		case "Hourly":
+			return HOURLY_RATE * clientEngagement.getHoursWorked();
+
+		default:
+			break;
+		}
+		return 0;
+	}
+}
+ ```
+
+Executons le code, retourne : Prix horaire : 5000.0
+
+Ajoutons les deux autres methodes de calcul FixedFee et RoyaltyPercentage.
+Le probleme de ce code est qu'il est tres lents, pas optimise ni maintenable.  
+
+**Mauvaises pratiques**
+*Codez tout en un seul endroit*
+* Ne s'adapte pas, difficile à localiser
+
+*Difficile a extends*
+* Besoin de modifier le code de calculateur pour changer quoi que ce soit
+
+*Difficile a configurer*
+* Variable de methode fortement type sans moyen de modifier les taux
+
+**Bonnes pratiques**
+Utiliser les classes abstraites et les interfaces.
 
 
 

@@ -1445,6 +1445,7 @@ Associe a l'instance de classe contenant
 
 
 
+
 ## Trucs et astuces
 
 *Comparer des Objets*

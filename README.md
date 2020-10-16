@@ -1563,8 +1563,158 @@ Le probleme de ce code est qu'il est tres lents, pas optimise ni maintenable.
 **Bonnes pratiques**
 Utiliser les classes abstraites et les interfaces.
 
+### Definitions
+
+**Abstract Class**
+
+Une classe abstraite peut avoir des méthodes abstraites (sans corps) qui ne peuvent pas être directement instanciées.
+
+```java
+abstract class RevenueCalculator{}
+class HourlyRateCalculator extends RevenueCalculator {}
+```
+
+**Interfaces Class**
+
+L'interface est un ensemble nomme de methodes. Une classe implemente une interface, ce qui signifie qu'elle a ces methodes
+
+```java
+interface RevenueCalculator{}
+class HourlyRateCalculator implements RevenueCalculator {}
+```
+
+**Differences entre interface et abstract**
+
+Abstract Classes:
+
+1. Les methodes sans mots-cles ont des corps.
+2. Le mot-cle abstrait vous permet de supprimer le corps.
+3. Les methodes peuvent être publiques, privees, protegees ou privees de package - la valeur par defaut
+4. Peut avoir des champs
+5. Les champs non prives sont visibles dans les sous-classes
+6. Heritage unique
+
+Interfaces:
+
+1. Les methodes sans mots cles n'ont pas de corps.
+2. Le mot-cle par defaut vous permet d'ajouter un corps.
+3. Toutes les methodes sont publiques.
+4. Ne peut pas avoir de champs d'instance
+5. Pas de partage d'etat
+6. Multiple heritage
 
 
+**Polymorphisme**
+
+Les objets d'une classe enfant peuvent être references par la classe de leur parent, les methodes appelees sur le parent se lient a l'implementation de l'enfant.
+
+### Refactorisation du code
+
+* Avec des classes abstraites
+* Avec des Interfaces
+
+1 . Creer la classe abstraite RevenueCalculator
+
+```java
+public abstract class RevenueCalculator {
+	public abstract double calculate(ClientEngagement clientEngagement);
+}
+```
+
+2 . Extends la classe abstraite sur chaque classe de types de methodes de calcule (horaire, forfaitaire ou royalty). Puis redefinissez a chaque fois la methode de calcul. Puis ajouter sur chaque classe un constructeur prenant respectivement leurs parametres.
+
+
+```java
+HourlyRateCalculator.java
+package com.ruffin.interfaceEtAbstract;
+
+public class HourlyRateCalculator extends RevenueCalculator {
+	public static final double HOURLY_RATE = 50;
+	private final double hourlyRate;
+
+	public HourlyRateCalculator(final double hourlyRate) {
+		this.hourlyRate = hourlyRate;
+	}
+
+	@Override
+	public double calculate(ClientEngagement clientEngagement) {
+		return hourlyRate * clientEngagement.getHoursWorked();
+	}
+
+}
+
+```
+
+```java
+FixedFeeCalculator.java
+package com.ruffin.interfaceEtAbstract;
+
+public class FixedFeeCalculator extends RevenueCalculator {
+	public static final double STANDARD_FEE = 500;
+	private final double fee;
+
+	public FixedFeeCalculator(final double fee) {
+		this.fee = fee;
+	}
+
+	@Override
+	public double calculate(final ClientEngagement clientEngagement) {
+		return fee;
+	}
+
+}
+```
+
+```java
+RoyaltyPercentageCalculator.java
+package com.ruffin.interfaceEtAbstract;
+
+public class RoyaltyPercentageCalculator extends RevenueCalculator {
+
+	public static final double ROYALTY_PERCENTAGE = 0.15;
+	private final double royaltyPercentage;
+
+	public RoyaltyPercentageCalculator(final double royaltyPercentage) {
+		this.royaltyPercentage = royaltyPercentage;
+	}
+
+	@Override
+	public double calculate(ClientEngagement clientEngagement) {
+		return royaltyPercentage * clientEngagement.getAnticipatedRevenue();
+	}
+
+}
+```
+
+3 . Utiliser enfin vos classes et methodes dans le main:
+
+```java
+package com.ruffin.interfaceEtAbstract;
+import static com.ruffin.interfaceEtAbstract.HourlyRateCalculator.HOURLY_RATE;
+import static com.ruffin.interfaceEtAbstract.FixedFeeCalculator.STANDARD_FEE;
+import static com.ruffin.interfaceEtAbstract.RoyaltyPercentageCalculator.ROYALTY_PERCENTAGE;;
+
+public class RevenueCalculatorRunner {
+
+	public static void main(String[] args) {
+		final ClientEngagement clientEngagement = new ClientEngagement("ruffin", 100, 15000);
+		final double hourlyPrice = new HourlyRateCalculator(HOURLY_RATE).calculate(clientEngagement);
+		System.out.println("Prix horaire" + hourlyPrice);
+		
+		final double fixedFeePrice = new FixedFeeCalculator(STANDARD_FEE).calculate(clientEngagement);
+		System.out.println("Prix forfaitaire : " + fixedFeePrice);
+		
+		final double royaltyPercentagePrice = new RoyaltyPercentageCalculator(ROYALTY_PERCENTAGE).calculate(clientEngagement);
+		System.out.println("Prix royalty : " + royaltyPercentagePrice);
+		
+	}
+}
+
+```
+
+
+
+ 
 
 ## Trucs et astuces
 

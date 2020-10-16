@@ -1,7 +1,8 @@
-# JAVA_FONDAMENTAL
+# JAVA
 
+## JAVA_LES_BASES
 
-## Creation et execution d'une application java
+### Creation et execution d'une application java
 
 Le point d'entrée de l'application aura toujours la meme signature.
 
@@ -23,7 +24,7 @@ System.out.println('Hello world');
 ```
 
 
-## Execution d'une application en ligne de commande
+### Execution d'une application en ligne de commande
 
 Ouvrez l'inviter de commande a la racine du projet ou se trouve le fichier Main.class
 
@@ -31,12 +32,12 @@ Ouvrez l'inviter de commande a la racine du projet ou se trouve le fichier Main.
 java Main.java
 ```
 
-## Syntaxe d'une instruction
+### Syntaxe d'une instruction
 
 Une instruction se termine par un ;
 
 
-## Commentaires
+### Commentaires
 
 Commenter une ligne avec l'aide de //...
 
@@ -44,7 +45,7 @@ Commenter un bloc avec l'aide de /*...*/
 
 Commentaire java doc /**...*/
 
-## Organisation du code et package
+### Organisation du code et package
 
 Le code est organise en package.
 
@@ -60,7 +61,7 @@ Ces packages ont une convention de nom:
 package com.ruffin
 ```
 
-## Les variables
+### Les variables
 
 Une variable est un simple espace de stockage ou l'on y met une valeur qui sera fortement type.
 
@@ -84,7 +85,7 @@ System.out.println(unNombre);
 
 
 
-## Variables final
+### Variables final
 
 Une variable final est utilise, par exemple, pour definir une constante et ainsi eviter sa reaffectation par une autre valeur.
 
@@ -94,7 +95,7 @@ final int nombreMAx = 1542 ;
 ```
 
 
-## Les donnees de type primitives
+### Les donnees de type primitives
 
 * Entier (Nombre/ Integer)
 
@@ -172,7 +173,7 @@ boolean jaimeJava = true ;
 ```
 
 
-## Le stockage des donnees de type primitives
+### Le stockage des donnees de type primitives
 
 La donnee de la variable est stocke dans son propre espace memoire. Si l'on attribut cette donnee a une autre variable, cette autre variable sera la copie de la precedente.
 
@@ -196,7 +197,7 @@ System.out.println(secondNombre);
 // return 655
 ```
 
-## Les operateurs arithmetiques
+### Les operateurs arithmetiques
 
 * Basic
 
@@ -292,7 +293,7 @@ System.out.println(result4);
 
 
 
-## La convertion des types de donnees
+### La convertion des types de donnees
 
 La convertion se fait a l'aide de transtypage (ou cast).
 
@@ -321,7 +322,7 @@ Les conversions d'elargissement sont effectuees automatiquement pour les equatio
 
 Attention lors de cast le surplus sera supprimer si la taille n'est pas suffisante.
 
-## Logic conditionnel
+### Logic conditionnel
 
 <, >, <=, =>, ==, !=
 
@@ -340,7 +341,7 @@ System.out.println("Valeur recherche :"+searchValue);
 // return 7
 ```
 
-## If-else
+### If-else
 
 
 ```java
@@ -354,7 +355,7 @@ if (valueA > valueB ) {
  
 ```
 
-## Operation logique
+### Operation logique
 
 * And : &
 * Ou : |
@@ -362,17 +363,17 @@ if (valueA > valueB ) {
 * Negation : !
 
 
-## Condition d'operation logique
+### Condition d'operation logique
 
 
 * And : &&
 * Or : ||
 
-## Etat d'un bloc et etendu des variables
+### Etat d'un bloc et etendu des variables
 
 Les variables declarees a l'exterieur des blocs sont visibles a l'interieur de ceux-la, alors que les variable declarees dans un  bloc ne sera visible que dans le bloc.
 
-## Switch
+### Switch
 
 ```java
 switch (value-to-test) {
@@ -390,7 +391,7 @@ switch (value-to-test) {
 
 ```
 
-## Boucle while 
+### Boucle while 
 
 Exemple calcule factoriel
 
@@ -407,7 +408,7 @@ System.out.println(factoriel);
 
 ```
 
-## Boucle do-while
+### Boucle do-while
 
 ```java
 do {
@@ -419,7 +420,7 @@ do {
 ```
 
 
-## Boucle For
+### Boucle For
 
 
 ```java
@@ -428,7 +429,7 @@ for (int i = 1; i < 100; i *= 2) {
 	}
 ```
 
-## Tableau
+### Tableau
 
 Declaration
 
@@ -467,7 +468,7 @@ for (int i = 0; i < resultOp.length; i++) {
 ```
 
 
-## Boucle for each
+### Boucle for each
 
 
 ```java
@@ -479,7 +480,7 @@ for (float currentVal : resultOp2) {
 }
 ```
 
-## Methodes
+### Methodes
 
 
 ```java
@@ -545,7 +546,7 @@ Exemple : a 20 10
 
 Lors de l'execution nous aurons le resultat 30 qui s'affichera.
 
-## Chaine de caractere (class String)
+### Chaine de caractere (class String)
 
 * Egalite entre deux String
 
@@ -635,7 +636,7 @@ private static void displayResult(char c, double d, double e, double result) {
 
 
 
-## Format des String
+### Format des String
 
 Nous voulons afficher Mes noeuveux ont 17, 15, 8 et 6 ans le plus jeune.
 
@@ -773,7 +774,7 @@ output:
 
 ```
 
-## Class Instant LocalDate et DateTimeFormatter
+### Class Instant LocalDate et DateTimeFormatter
 
 Pour travailler avec les heures pour le suivi d'un evenement nous utilisons la class java *Instant*.
 
@@ -832,7 +833,7 @@ LocalDate theDate = LocalDate.parse(usDateString, usDateFormat);
 System.out.println("La date "+theDate);
 ```
 
-## Class Wrapper
+### Class Wrapper
 
 Les types primitifs sont incapables de fournir des méthodes pour exploiter ces datas.
 
@@ -1254,7 +1255,7 @@ class ClasseComplete extends ClasseAbstraite {
 * La declaration d'une valeur cree l'instance
 * Peut tirer parti des constructeurs
 
-#### Creer des relations abstraites avec des interfaces
+### Creer des relations abstraites avec des interfaces
 
 *Une interface definit un contrat*
 * Fournit une liste d'operations
@@ -1435,7 +1436,16 @@ public class ClassePrincipale18 {
 *Les classes anonymes sont des classes interne*
 Associe a l'instance de classe contenant
 
-### Trucs et astuces
+
+## Retour sur les Interfaces et Abstracts
+
+### Etude d'un code sans ces concepts
+
+
+
+
+
+## Trucs et astuces
 
 *Comparer des Objets*
 * En effet '==' permet uniquement de comparer les references des objets (adresse memoire)

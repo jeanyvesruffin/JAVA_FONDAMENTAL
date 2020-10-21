@@ -1124,7 +1124,7 @@ Nous pouvons initialiser un bloc comme ci-dessous afin d'initialiser un attribut
 * effectuer une initialisation de type unique
 * executer avant la premiere utilisation du type
 
-### Methodes
+### Methodes
 
 *Les objets sont passes par reference*
 * La reference est copiee dans la methode

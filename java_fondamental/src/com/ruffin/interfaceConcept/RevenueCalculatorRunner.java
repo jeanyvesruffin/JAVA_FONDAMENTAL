@@ -9,7 +9,7 @@ public class RevenueCalculatorRunner {
 	public static void main(String[] args) {
 		final ClientEngagement clientEngagement = new ClientEngagement("ruffin", 100, 15000);
 		final double hourlyPrice = new HourlyRateCalculator(HOURLY_RATE).calculate(clientEngagement);
-		System.out.println("Prix horaire" + hourlyPrice);
+		System.out.println("Prix horaire :" + hourlyPrice);
 
 		final double fixedFeePrice = new FixedFeeCalculator(STANDARD_FEE).calculate(clientEngagement);
 		System.out.println("Prix forfaitaire : " + fixedFeePrice);
@@ -21,7 +21,7 @@ public class RevenueCalculatorRunner {
 		// Exemple de polymorphisme
 		RevenueCalculator revenueCalculator = new HourlyRateCalculator(50);
 		final double price = revenueCalculator.calculate(clientEngagement);
-		System.out.println("proce polymorphisme : " + price);
+		System.out.println("Prix avec le polymorphisme : " + price);
 
 	}
 }

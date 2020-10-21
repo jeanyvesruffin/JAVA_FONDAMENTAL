@@ -1440,7 +1440,7 @@ Associe a l'instance de classe contenant
 
 ## Retour sur les Interfaces et Abstracts
 
-### Etude d'un code sans ces concepts (attention ce code n'est pas correct et sera refactorise)
+### Etude d'un code sans ces concepts (attention ce code n'est pas correct et sera refactorise) package interfaceAndAbsttract_NOTUSED
 
 Le programme permet de connaitre le revenu d'un engagement client sur un projet.
 
@@ -1608,7 +1608,7 @@ Interfaces:
 
 Les objets d'une classe enfant peuvent être references par la classe de leur parent, les methodes appelees sur le parent se lient a l'implementation de l'enfant.
 
-### Refactorisation du code avec une classe abstraite
+### Refactorisation du code avec une classe abstraite, package abstractConcept
 
 
 1 . Creer la classe abstraite RevenueCalculator
@@ -1721,12 +1721,325 @@ System.out.println("proce polymorphisme : " + price);
 
 Etant donnee que HourlyRate est une extension de RevenueCalculator, nous pouvons a l'aide du polymorphisme appeler la methode calculate().
 
-### Refactorisation du code avec une interface
+### Refactorisation du code avec une interface, package interfaceConcept
 
 Cela est le meme code que precedemment a la difference qu'on lui d'extends on implements et au lui d'abstract on interface
 
 
 **Les interfaces sont previlegie au Abstract**
+
+### Revenons sur l'abstraction
+
+
+**Avantage**
+* Meilleur facon d'organiser le code
+* Supprime les details
+* Simplifie les interactions
+* ameliore la maintenance
+
+#### Demos Abstractions, package abstract_need
+
+Nous allons faire abstraction de la methode de calcule (RevenueCalculator calculator), passe directement en parametre de la methode (printTotalRevenue).
+
+
+```java
+package com.ruffin.abstract_need;
+
+import java.util.Arrays;
+import static com.ruffin.abstract_need.FixedFeeCalculator.STANDARD_FEE;
+import static com.ruffin.abstract_need.HourlyRateCalculator.HOURLY_RATE;
+import static com.ruffin.abstract_need.RoyaltyPercentageCalculator.ROYALTY_PERCENTAGE;
+import java.util.List;
+
+public class SalesPredictor {
+
+	public static void main(String[] args) {
+		final List<ClientEngagement> clientEngagements = Arrays.asList(
+				new ClientEngagement("Catherine's Cookie", 40, 40000), new ClientEngagement("Bob's Burgers", 30, 4000),
+				new ClientEngagement("Dave's Doughnuts", 25, 1000), new ClientEngagement("Susan's Sausages", 10, 2000));
+		System.out.println("Fixed fee ");
+		printTotalRevenue(clientEngagements,  new FixedFeeCalculator(STANDARD_FEE));
+		
+		System.out.println("Hourly Rate ");
+		printTotalRevenue(clientEngagements, new HourlyRateCalculator(HOURLY_RATE));
+		
+		System.out.println("Royalty share");
+		printTotalRevenue(clientEngagements,  new RoyaltyPercentageCalculator(ROYALTY_PERCENTAGE));
+
+	}
+
+	private static void printTotalRevenue(final List<ClientEngagement> clientEngagements, final RevenueCalculator calculator) {
+		double result = 0;
+		for (ClientEngagement clientEngagement : clientEngagements) {
+			result += calculator.calculate(clientEngagement);
+		}
+		System.out.println("Total : " + result);
+	}
+}
+```
+
+**Les abstractions n'ont pas besoin d'interfaces**
+
+*Abstraction structuree*
+* Divisez les operations complexes en methodes plus simples
+
+*Abstraction de classe*
+* Deleguer la responsabilite a d'autres classes
+
+*Polymorphisme*
+* La couche d'abstraction peut avoir differentes implementations
+
+#### Demos abstraction procédurale, package abstract_procedural
+
+*Exercice*
+
+Abstraction structuree et basee sur les classes
+
+Code rendera le dessin des animaux
+* un animal
+* traits du visage
+* arcs, lignes, ovales
+* Rendu spécifique à la plateforme
+
+Premierement, nous installons JAVAFX qui permet d'avoir une interface graphique.
+
+[FAVA FX](https://openjfx.io/)
+
+* Initialisation de l'IHM
+
+```java
+package com.ruffin.abstract_procedurale;
+
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.stage.Stage;
+
+public class AnimalApplication extends Application {
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+	@Override
+	public void start(final Stage stage) throws Exception {
+		stage.setTitle("Animals");
+		Group root = new Group();
+		Canvas canvas = new Canvas(700, 700);
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		drawAnimals(gc);
+		root.getChildren().add(canvas);
+		stage.setScene(new Scene(root));
+		stage.show();
+		
+		stage.setX(300);
+		stage.setY(300);
+
+	}
+
+	private void drawAnimals(final GraphicsContext gc) {
+
+	}
+}
+```
+
+Lors de l'execution nous avons une fenetre qui apparait avec un titre "Animals"
+
+Puis nous instancions une class Animals et une methode draw.
+
+A l'aide de l'IDE nous creons la classe et ces methodes (drawHead() ...ect).
+
+```java
+package com.ruffin.abstract_procedurale;
+
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.shape.ArcType;
+
+public class Animal {
+
+	public void draw(final GraphicsContext gc) {
+		// tete
+		drawHead(gc);
+		// oreilles
+		drawEars(gc);
+		// yeux
+		drawEyes(gc);
+		// Nez
+		drawNose(gc);
+		// Bouche
+		drawMouth(gc);
+	}
+
+	private void drawMouth(GraphicsContext gc) {
+		gc.strokeLine(350, 475, 350, 550);
+		gc.strokeArc(280, 450, 140, 100, 180, 180, ArcType.OPEN);
+	}
+
+	private void drawNose(final GraphicsContext gc) {
+		gc.fillOval(320, 400, 60, 60);
+
+	}
+
+	private void drawEyes(GraphicsContext gc) {
+		gc.fillOval(250, 320, 30, 30);
+		gc.fillOval(450, 320, 30, 30);
+	}
+
+	private void drawEars(final GraphicsContext gc) {
+		gc.strokeOval(85, 85, 100, 100);
+		gc.strokeOval(515, 85, 100, 100);
+	}
+
+	private void drawHead(final GraphicsContext gc) {
+		gc.setLineWidth(5);
+		gc.strokeOval(100, 100, 500, 500);
+		gc.strokeOval(225, 350, 250, 250);
+	}
+
+}
+```
+
+### Etendre votre code via des interfaces, package com.ruffin.interface_need
+
+* Declaration de notre interface dans ClientEngagementRepository, methodes add et remove. Cela permettra de construire notre interface avec la base de donnee , par rexemple.
+
+
+```java
+public interface ClientEngagementRepository {
+
+	int NO_ID = 0;
+
+	void add(ClientEngagement engagement);
+
+	void remove(ClientEngagement engagemen);
+}
+```
+
+* Nous ajoutons a notre interface des methodes de recherche de client.
+
+*Exemple recherche par nom de client ==> MAUVAISE APPROCHE*
+
+```java
+
+Iterable<ClientEngagement> findEngagementsByClient (final String client);
+
+Iterable<ClientEngagement> findEngagementsWithAtLeastHoursWorked (final int hoursWorked);
+
+```
+
+
+*Exemple recherche par nom de client ==> BONNE APPROCHE, consisite à faire une unique methode generique de recherche*
+
+```java
+
+Iterable<ClientEngagement> find(final Query query);
+
+```
+
+Et definir cette methode dans une nouvelle classe Query. Puuis faire une classe test (Exemple ) d'un cleint appelant cette methode. 
+
+```java
+public class Query {
+
+	private String clientName;
+	private int atLeastHoursWorked;
+
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+
+	public int getAtLeastHoursWorked() {
+		return atLeastHoursWorked;
+	}
+
+	public void setAtLeastHoursWorked(int atLeastHoursWorked) {
+		this.atLeastHoursWorked = atLeastHoursWorked;
+	}
+
+}
+```
+Puis nous faisons un test dans la class main:
+
+```java
+public class Example {
+
+	public static void main(String[] args) {
+		ClientEngagementRepository repository = null;
+		Query query = new Query();
+
+		query.setAtLeastHoursWorked(3);
+		query.setClientName("RUFFIN");
+
+		final Iterable<ClientEngagement> engagements = repository.find(query);
+	}
+
+}
+
+```
+
+Ceci permet d'avoir un code plus flexible.
+
+Afin de rendre notre programme plus fluide , nous mettons un retour de type Query aux methodes setAtLeastHoursWorked et setClientName qui actuellement ne nous retourne rien (void) afin de nous retourner l'objet de la requete, this (lui-meme). Nous changerons le terme des methode en enlevant set
+
+```java
+public Query clientName(String clientName) {
+	this.client = clientName;
+	return this;
+}
+
+public Query atLeastHoursWorked(int atLeastHoursWorked) {
+	this.atLeastHoursWorked = atLeastHoursWorked;
+	return this;
+}
+```
+
+La class main devient alors:
+
+```java
+public class Example {
+
+	public static void main(String[] args) {
+		ClientEngagementRepository repository = null;
+		final Iterable<ClientEngagement> engagements = repository
+				.find(new Query().atLeastHoursWorked(3).clientName("RUFFIN"));
+	}
+
+}
+```
+
+#### Exception et ressources
+
+Nous pouvons encore ameliorer notre interface, en effet celle-ci nous retourne un objet de type Iterable, preferable a un type list car list nous propose des methodes qui n'a pas de sens dans ce context. Et Iterable a l'avantage d'avoir qu'une seule methode à implementer. Du coup pour obtenir le resultat de notre requete, il nous suffis d'utiliser une boucle for each apres avoir implementer la methode iterator() au resultat.
+
+```java
+public class Example {
+
+	public static void main(String[] args) {
+		ClientEngagementRepository repository = null;
+		final Iterable<ClientEngagement> engagements = repository
+				.find(new Query().atLeastHoursWorked(3).clientName("RUFFIN"));
+
+		engagements.iterator();
+
+		for (ClientEngagement clientEngagement : engagements) {
+
+		}
+
+	}
+
+}
+```
+
+Nous allons maintenant creer une classe gerant les exceptions RepositoryException.
+
+
+
 
 
 ## Trucs et astuces

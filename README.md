@@ -1438,7 +1438,7 @@ public class ClassePrincipale18 {
 Associe a l'instance de classe contenant
 
 
-## Retour sur les Interfaces et Abstracts
+## Retour sur les Interfaces et Abstracts
 
 ### Etude d'un code sans ces concepts (attention ce code n'est pas correct et sera refactorise) package interfaceAndAbsttract_NOTUSED
 
@@ -1563,7 +1563,7 @@ Le probleme de ce code est qu'il est tres lents, pas optimise ni maintenable.
 **Bonnes pratiques**
 Utiliser les classes abstraites et les interfaces.
 
-### Definitions
+### Definitions
 
 **Abstract Class**
 
@@ -1728,7 +1728,7 @@ Cela est le meme code que precedemment a la difference qu'on lui d'extends on im
 
 **Les interfaces sont previlegie au Abstract**
 
-### Revenons sur l'abstraction
+### Revenons sur l'abstraction
 
 
 **Avantage**
@@ -2042,7 +2042,7 @@ Nous allons maintenant creer une classe gerant les exceptions RepositoryExceptio
 
 
 
-## Trucs et astuces
+## Trucs et astuces
 
 *Comparer des Objets*
 * En effet '==' permet uniquement de comparer les references des objets (adresse memoire)

@@ -1938,7 +1938,7 @@ Iterable<ClientEngagement> find(final Query query);
 
 ```
 
-Et definir cette methode dans une nouvelle classe Query. Puuis faire une classe test (Exemple ) d'un cleint appelant cette methode. 
+Et definir cette methode dans une nouvelle classe Query. Puuis faire une classe test (Exemple ) d'un client appelant cette methode. 
 
 ```java
 public class Query {
@@ -2038,7 +2038,32 @@ public class Example {
 
 Nous allons maintenant creer une classe gerant les exceptions RepositoryException.
 
+```java
+public class RepositoryException extends RuntimeException {
 
+	public RepositoryException(final String message, final Throwable cause) {
+		super(message, cause);
+	}
+
+}
+```
+
+Et nous ajouteons l'exception ainsi qu'extends Autoclosable permettant de fermer l'interface une fois utilise, cad, connection avec la base de donnee ...
+
+```java
+public interface ClientEngagementRepository extends AutoCloseable{
+
+	int NO_ID = 0;
+
+	void add(ClientEngagement engagement) throws RepositoryException;
+
+	void remove(ClientEngagement engagemen)throws RepositoryException;
+	
+	Iterable<ClientEngagement> find(final Query query)throws RepositoryException;
+
+}
+
+```
 
 
 

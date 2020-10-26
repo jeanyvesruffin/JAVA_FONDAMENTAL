@@ -1,13 +1,13 @@
 package com.ruffin.interface_need;
 
-public interface ClientEngagementRepository {
+public interface ClientEngagementRepository extends AutoCloseable{
 
 	int NO_ID = 0;
 
-	void add(ClientEngagement engagement);
+	void add(ClientEngagement engagement) throws RepositoryException;
 
-	void remove(ClientEngagement engagemen);
+	void remove(ClientEngagement engagemen)throws RepositoryException;
 	
-	Iterable<ClientEngagement> find(final Query query);
+	Iterable<ClientEngagement> find(final Query query)throws RepositoryException;
 
 }

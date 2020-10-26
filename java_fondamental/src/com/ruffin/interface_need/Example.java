@@ -10,7 +10,8 @@ public class Example {
 		engagements.iterator();
 
 		for (ClientEngagement clientEngagement : engagements) {
-
+			System.out.println(clientEngagement);
+			
 		}
 
 	}

@@ -6,7 +6,7 @@ public interface ClientEngagementRepository extends AutoCloseable{
 
 	void add(ClientEngagement engagement) throws RepositoryException;
 
-	void remove(ClientEngagement engagemen)throws RepositoryException;
+	void remove(ClientEngagement engagement)throws RepositoryException;
 	
 	Iterable<ClientEngagement> find(final Query query)throws RepositoryException;
 

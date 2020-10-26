@@ -2065,6 +2065,260 @@ public interface ClientEngagementRepository extends AutoCloseable{
 
 ```
 
+### Interfaces d'implementation dans differents modules.
+
+*Implementer correctement une interface a l'aide du principe de substitution de Liskov*
+
+Les references aux interfaces doivent pouvoir utiliser n'importe quelle classe d'implementation.
+
+Exemple: Rectangle
+
+Le carre d'un rectangle, n'implemente pas de relation naturellement pour definir la largeur et hauteur independamment.
+
+Principe general:
+
+* Preconditions
+
+Une implementation doit fonctionner partout ou son parent est et doit recevoir en parametre des parametres valides (ex: email adress).
+
+* PostConditions
+
+Une implementation doit faire tout ce que l'on attend de son parent et ainsi verifier le retour.
+
+
+*Trucs et astuces pour masquer la mise en oeuvre*
+
+
+* Controle d'acces
+
+Toutes les methodes ne figurant pas sur l'interface peuvent etre privees / package scope package.
+
+
+* Packages
+
+Utilisez package pour masquer l'implementation: portee du package.
+
+Champs
+
+Les interfaces n'exposent pas les champs d'instance.
+
+
+*DEMO*
+
+* CSV Implementation
+
+A partir d'un stockage d'un fichier plat avec des valeurs separees par des virgules.
+
+DEMO:
+
+* CSV repository implementation:  CsvPersistor et CsvClientEngagementRepository
+
+
+```java
+
+public class CsvPersistor {
+
+	private static final int CLIENT_COL = 0;
+	private static final int HOURS_WORKED_COL = 1;
+	private final String path;
+
+	public CsvPersistor(String path) {
+		super();
+		this.path = path;
+	}
+
+	List<ClientEngagement> load() {
+		try (CSVReader reader = new CSVReader(new FileReader(path))) {
+			final List<ClientEngagement> engagements = new ArrayList<ClientEngagement>();
+			final Iterator<String[]> iterator = reader.iterator();
+			while (iterator.hasNext()) {
+				final String[] row = iterator.next();
+				final String client = row[CLIENT_COL];
+				final int hoursWorked = Integer.parseInt(row[HOURS_WORKED_COL]);
+				engagements.add(new ClientEngagement(client, hoursWorked));
+			}
+			return engagements;
+		} catch (IOException msg) {
+			throw new RepositoryException("Impossible de charger le contenu de : " + path, msg);
+		}
+	}
+
+	void save(final List<ClientEngagement> engagements) {
+		try (CSVWriter csvWriter = new CSVWriter(new FileWriter(path))) {
+			engagements.forEach(engagement -> {
+				final String[] row = { engagement.getClient(), String.valueOf(engagement.getHoursWorked()) };
+				csvWriter.writeNext(row);
+			});
+		} catch (IOException e) {
+			throw new RepositoryException("Impossible de sauvegarder le contenu de : " + path, e);
+		}
+	}
+}
+
+```
+
+* Completer la classe repository
+
+```java
+
+public class CsvClientEngagementRepository implements ClientEngagementRepository {
+
+	private List<ClientEngagement> engagements;
+	private final CsvPersistor persistor;
+	private int nextInt = 1;
+
+	public CsvClientEngagementRepository(final String path) {
+		super();
+		persistor = new CsvPersistor(path);
+		engagements = persistor.load();
+
+	}
+
+	@Override
+	public void close() throws Exception {
+		persistor.save(engagements);
+
+	}
+
+	@Override
+	public void add(ClientEngagement engagement) throws RepositoryException {
+		if (engagement.getId() == NO_ID) {
+			engagements.add(engagement);
+			engagement.setId(nextInt++);
+		}
+	}
+
+	@Override
+	public void remove(ClientEngagement engagementToRemove) throws RepositoryException {
+		if (engagements.removeIf(engagement -> engagement.getId() == engagementToRemove.getId())) {
+			engagementToRemove.setId(NO_ID);
+		}
+	}
+
+	@Override
+	public Iterable<ClientEngagement> find(Query query) throws RepositoryException {
+
+		return engagements.stream().filter(filterOf(query)).collect(Collectors.toList());
+	}
+
+	private Predicate<? super ClientEngagement> filterOf(final Query query) {
+		final String client = query.getClientName();
+		return engagement -> engagement.getHoursWorked() >= query.getAtLeastHoursWorked()
+				&& (client == null || engagement.getClient().equals(client));
+	}
+
+}
+```
+
+DEMO:
+
+* SQL impementation repository (DataBaseClientEngagementRepository)
+
+```java
+
+import static java.sql.Statement.RETURN_GENERATED_KEYS;
+
+public class DataBaseClientEngagementRepository implements ClientEngagementRepository {
+
+	private Connection connection;
+	private PreparedStatement addStatement;
+	private PreparedStatement removeStatement;
+
+	public DataBaseClientEngagementRepository(final Connection connection) {
+		this.connection = connection;
+		try {
+			// initialisation connection base de donnee
+			connection.createStatement().executeUpdate("CREATE TABLE IF NOT EXISTS " + "client_engagements ("
+					+ "id INT IDENTITY," + "client VARCHAR(15) NOT NULL," + "hoursWorked INT NOT NULL" + ")");
+			addStatement = connection.prepareStatement(
+					"INSERT INTO client_engagements (client, hoursWorked) VALUES (?,?)", RETURN_GENERATED_KEYS);
+			removeStatement = connection.prepareStatement("DELETE FROM client_engagement where id = ?");
+		} catch (SQLException e) {
+			throw new RepositoryException("Le repository ne peut pas etre initialise : ", e);
+		}
+	}
+
+	@Override
+	public void close() throws Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void add(ClientEngagement engagement) throws RepositoryException {
+		try {
+			addStatement.setString(1, engagement.getClient());
+			addStatement.setInt(2, engagement.getHoursWorked());
+			addStatement.executeUpdate();
+			final ResultSet keys = addStatement.getGeneratedKeys();
+			if (keys.next()) {
+				final int id = keys.getInt("id");
+				engagement.setId(id);
+			}
+		} catch (SQLException e) {
+			throw new RepositoryException("L'ajout a echoue : " + engagement, e);
+		}
+
+	}
+
+	@Override
+	public void remove(ClientEngagement engagement) throws RepositoryException {
+		try {
+			removeStatement.setInt(1, engagement.getId());
+			if (removeStatement.executeUpdate() > 0) {
+				engagement.setId(NO_ID);
+			}
+		} catch (SQLException e) {
+			throw new RepositoryException("La suppression a echoue : " + engagement, e);
+		}
+
+	}
+
+	@Override
+	public Iterable<ClientEngagement> find(Query query) throws RepositoryException {
+		try {
+			final Statement statement = connection.createStatement();
+			final ResultSet resultSet = statement
+					.executeQuery("SELECT * FROM client_engagements WHERE " + generateWhere(query));
+			return new DatabaseIterable(resultSet);
+		} catch (SQLException e) {
+			throw new RepositoryException("La demande a echoue : " + query, e);
+		}
+	}
+
+	private String generateWhere(Query query) {
+		final StringBuilder builder = new StringBuilder();
+		final boolean hasClientClause = query.getClientName() != null;
+		if (hasClientClause) {
+			builder.append("client ='").append(query.getClientName()).append("'");
+		}
+		final boolean hasHoursWorkedClause = query.getAtLeastHoursWorked() > 0;
+		if (hasHoursWorkedClause) {
+			if (hasClientClause) {
+				builder.append( " and ");
+			}
+			builder.append(" hoursWorked >  ").append(query.getAtLeastHoursWorked());
+		}
+		if (! hasClientClause && !hasHoursWorkedClause)
+		{
+			return "true";
+		}
+		return builder.toString();
+	}
+
+}
+
+```
+
+* DataBaseIterable
+
+```java
+
+
+```
+
+
+
 
 
 ## Trucs et astuces

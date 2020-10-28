@@ -29,8 +29,12 @@ public class DataBaseClientEngagementRepository implements ClientEngagementRepos
 	}
 
 	@Override
-	public void close() throws Exception {
-		// TODO Auto-generated method stub
+	public void close() throws RepositoryException {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			throw new RepositoryException("La fermeture de la base de ddonnee a echoue", e);
+		}
 
 	}
 
@@ -85,12 +89,11 @@ public class DataBaseClientEngagementRepository implements ClientEngagementRepos
 		final boolean hasHoursWorkedClause = query.getAtLeastHoursWorked() > 0;
 		if (hasHoursWorkedClause) {
 			if (hasClientClause) {
-				builder.append( " and ");
+				builder.append(" and ");
 			}
 			builder.append(" hoursWorked >  ").append(query.getAtLeastHoursWorked());
 		}
-		if (! hasClientClause && !hasHoursWorkedClause)
-		{
+		if (!hasClientClause && !hasHoursWorkedClause) {
 			return "true";
 		}
 		return builder.toString();

@@ -2216,8 +2216,6 @@ DEMO:
 
 ```java
 
-import static java.sql.Statement.RETURN_GENERATED_KEYS;
-
 public class DataBaseClientEngagementRepository implements ClientEngagementRepository {
 
 	private Connection connection;
@@ -2239,8 +2237,12 @@ public class DataBaseClientEngagementRepository implements ClientEngagementRepos
 	}
 
 	@Override
-	public void close() throws Exception {
-		// TODO Auto-generated method stub
+	public void close() throws RepositoryException {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			throw new RepositoryException("La fermeture de la base de ddonnee a echoue", e);
+		}
 
 	}
 
@@ -2295,12 +2297,11 @@ public class DataBaseClientEngagementRepository implements ClientEngagementRepos
 		final boolean hasHoursWorkedClause = query.getAtLeastHoursWorked() > 0;
 		if (hasHoursWorkedClause) {
 			if (hasClientClause) {
-				builder.append( " and ");
+				builder.append(" and ");
 			}
 			builder.append(" hoursWorked >  ").append(query.getAtLeastHoursWorked());
 		}
-		if (! hasClientClause && !hasHoursWorkedClause)
-		{
+		if (!hasClientClause && !hasHoursWorkedClause) {
 			return "true";
 		}
 		return builder.toString();
@@ -2313,9 +2314,41 @@ public class DataBaseClientEngagementRepository implements ClientEngagementRepos
 * DataBaseIterable
 
 ```java
+public class DatabaseIterable implements Iterable<ClientEngagement> {
 
+	private ResultSet resultSet;
+	
+	public DatabaseIterable(final ResultSet resultSet) {
+		this.resultSet = resultSet;
+	}
+
+	@Override
+	public Iterator<ClientEngagement> iterator() {
+		return new DataBaseIterator(resultSet);
+	}
+
+}
 
 ```
+
+
+### Reconnaitre les dangers de la surabstraction
+
+* Chaque abstraction a un coût
+* *Objectif:* ameliorer notre base de code
+* Les avantages doivent l'emporter sur le coût
+* Jugement fonde sur des principes
+
+
+### YAGNI ( Tu n'en auras pas besoin ==> You Ain't Gonna Need It)
+
+
+*Principe*
+
+* A l'origine des principes de methode Agile / XP
+* N'ajoutez pas d'abstractions tant qu'elles ne sont pas necessaires
+* Faites la chose la plus simple qui pourrait fonctionner
+* Refactoriser en permanence pour faire evoluer, ajouter, supprimer l'abstraction
 
 
 
@@ -2328,6 +2361,15 @@ public class DataBaseClientEngagementRepository implements ClientEngagementRepos
 * Pour comparer l'egalite des variables de deux instances, il faut munir la classe d'une methode a cet effet : la methode equals() heritee de Object.
 
 Pour s'assurer que deux objets sont de la même classe, il faut utiliser la methode getClass() de la classe Object dont toutes les classes heritent.
+
+*Quels sont les couts ?* 
+
+* Code difficile a trouver + lire.
+* Code difficile a faire evoluer
+* Plus de code
+
+> Il y a deux choses difficiles en informatique: l'invalidation du cache et la denomination des choses. Phil Karton
+
 
 
 

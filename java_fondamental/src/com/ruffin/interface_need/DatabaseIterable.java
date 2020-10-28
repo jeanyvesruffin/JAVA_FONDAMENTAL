@@ -5,14 +5,15 @@ import java.util.Iterator;
 
 public class DatabaseIterable implements Iterable<ClientEngagement> {
 
-	public DatabaseIterable(ResultSet resultSet) {
-		// TODO Auto-generated constructor stub
+	private ResultSet resultSet;
+	
+	public DatabaseIterable(final ResultSet resultSet) {
+		this.resultSet = resultSet;
 	}
 
 	@Override
 	public Iterator<ClientEngagement> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new DataBaseIterator(resultSet);
 	}
 
 }

@@ -1,74 +1,71 @@
-# JAVA
-
 <!-- TOC -->
 
-- [JAVA](#java)
-    - [JAVA_LES_BASES](#java_les_bases)
-        - [Creation et execution d'une application java](#creation-et-execution-dune-application-java)
-        - [Execution d'une application en ligne de commande](#execution-dune-application-en-ligne-de-commande)
-        - [Syntaxe d'une instruction](#syntaxe-dune-instruction)
-        - [Commentaires](#commentaires)
-        - [Organisation du code et package](#organisation-du-code-et-package)
-        - [Les variables](#les-variables)
-        - [Variables final](#variables-final)
-        - [Les donnees de type primitives](#les-donnees-de-type-primitives)
-        - [Le stockage des donnees de type primitives](#le-stockage-des-donnees-de-type-primitives)
-        - [Les operateurs arithmetiques](#les-operateurs-arithmetiques)
-        - [La convertion des types de donnees](#la-convertion-des-types-de-donnees)
-        - [Logic conditionnel](#logic-conditionnel)
-        - [If-else](#if-else)
-        - [Operation logique](#operation-logique)
-        - [Condition d'operation logique](#condition-doperation-logique)
-        - [Etat d'un bloc et etendu des variables](#etat-dun-bloc-et-etendu-des-variables)
-        - [Switch](#switch)
-        - [Boucle while](#boucle-while)
-        - [Boucle do-while](#boucle-do-while)
-        - [Boucle For](#boucle-for)
-        - [Tableau](#tableau)
-        - [Boucle for each](#boucle-for-each)
-        - [Methodes](#methodes)
+- [JAVA_LES_BASES](#java_les_bases)
+    - [Creation et execution d'une application java](#creation-et-execution-dune-application-java)
+    - [Execution d'une application en ligne de commande](#execution-dune-application-en-ligne-de-commande)
+    - [Syntaxe d'une instruction](#syntaxe-dune-instruction)
+    - [Commentaires](#commentaires)
+    - [Organisation du code et package](#organisation-du-code-et-package)
+    - [Les variables](#les-variables)
+    - [Variables final](#variables-final)
+    - [Les donnees de type primitives](#les-donnees-de-type-primitives)
+    - [Le stockage des donnees de type primitives](#le-stockage-des-donnees-de-type-primitives)
+    - [Les operateurs arithmetiques](#les-operateurs-arithmetiques)
+    - [La convertion des types de donnees](#la-convertion-des-types-de-donnees)
+    - [Logic conditionnel](#logic-conditionnel)
+    - [If-else](#if-else)
+    - [Operation logique](#operation-logique)
+    - [Condition d'operation logique](#condition-doperation-logique)
+    - [Etat d'un bloc et etendu des variables](#etat-dun-bloc-et-etendu-des-variables)
+    - [Switch](#switch)
+    - [Boucle while](#boucle-while)
+    - [Boucle do-while](#boucle-do-while)
+    - [Boucle For](#boucle-for)
+    - [Tableau](#tableau)
+    - [Boucle for each](#boucle-for-each)
+    - [Methodes](#methodes)
     - [Passage parametre a une methode via ligne de commande](#passage-parametre-a-une-methode-via-ligne-de-commande)
-        - [Chaine de caractere (class String)](#chaine-de-caractere-class-string)
-        - [Format des String](#format-des-string)
-        - [Class Instant LocalDate et DateTimeFormatter](#class-instant-localdate-et-datetimeformatter)
-        - [Class Wrapper](#class-wrapper)
-    - [JAVA_POO les classes](#java_poo-les-classes)
-        - [Les classes ont la syntaxe suivante:](#les-classes-ont-la-syntaxe-suivante)
-        - [Instanciation et utilisation d'une classe](#instanciation-et-utilisation-dune-classe)
-        - [Encapsulation](#encapsulation)
-        - [References special](#references-special)
-        - [Getters (Accessors) et Setters (Mutators)](#getters-accessors-et-setters-mutators)
-        - [Enchainement de constructeur](#enchainement-de-constructeur)
-        - [Initialisation de blocs](#initialisation-de-blocs)
-        - [Static](#static)
-        - [Methodes](#methodes-1)
-        - [Heritage de classe (extends)](#heritage-de-classe-extends)
-        - [Reference super, abstract et final](#reference-super-abstract-et-final)
-        - [Enum](#enum)
-        - [Creer des relations abstraites avec des interfaces](#creer-des-relations-abstraites-avec-des-interfaces)
-        - [Types imbriqués et classes anonymes](#types-imbriqués-et-classes-anonymes)
-    - [Retour sur les Interfaces et Abstracts](#retour-sur-les-interfaces-et-abstracts)
-        - [Etude d'un code sans ces concepts (attention ce code n'est pas correct et sera refactorise) package interfaceAndAbsttract_NOTUSED](#etude-dun-code-sans-ces-concepts-attention-ce-code-nest-pas-correct-et-sera-refactorise-package-interfaceandabsttract_notused)
+    - [Chaine de caractere (class String)](#chaine-de-caractere-class-string)
+    - [Format des String](#format-des-string)
+    - [Class Instant LocalDate et DateTimeFormatter](#class-instant-localdate-et-datetimeformatter)
+    - [Class Wrapper](#class-wrapper)
+- [JAVA_POO les classes](#java_poo-les-classes)
+    - [Les classes ont la syntaxe suivante:](#les-classes-ont-la-syntaxe-suivante)
+    - [Instanciation et utilisation d'une classe](#instanciation-et-utilisation-dune-classe)
+    - [Encapsulation](#encapsulation)
+    - [References special](#references-special)
+    - [Getters (Accessors) et Setters (Mutators)](#getters-accessors-et-setters-mutators)
+    - [Enchainement de constructeur](#enchainement-de-constructeur)
+    - [Initialisation de blocs](#initialisation-de-blocs)
+    - [Static](#static)
+    - [Methodes](#methodes-1)
+    - [Heritage de classe (extends)](#heritage-de-classe-extends)
+    - [Reference super, abstract et final](#reference-super-abstract-et-final)
+    - [Enum](#enum)
+    - [Creer des relations abstraites avec des interfaces](#creer-des-relations-abstraites-avec-des-interfaces)
+    - [Types imbriqués et classes anonymes](#types-imbriqués-et-classes-anonymes)
+- [Retour sur les Interfaces et Abstracts](#retour-sur-les-interfaces-et-abstracts)
+    - [Etude d'un code sans ces concepts (attention ce code n'est pas correct et sera refactorise) package interfaceAndAbsttract_NOTUSED](#etude-dun-code-sans-ces-concepts-attention-ce-code-nest-pas-correct-et-sera-refactorise-package-interfaceandabsttract_notused)
         - [Definitions](#definitions)
-        - [Refactorisation du code avec une classe abstraite, package abstractConcept](#refactorisation-du-code-avec-une-classe-abstraite-package-abstractconcept)
+    - [Refactorisation du code avec une classe abstraite, package abstractConcept](#refactorisation-du-code-avec-une-classe-abstraite-package-abstractconcept)
         - [Refactorisation du code avec une interface, package interfaceConcept](#refactorisation-du-code-avec-une-interface-package-interfaceconcept)
-        - [Revenons sur l'abstraction](#revenons-sur-labstraction)
-            - [Demos Abstractions, package abstract_need](#demos-abstractions-package-abstract_need)
-            - [Demos abstraction procédurale, package abstract_procedural](#demos-abstraction-procédurale-package-abstract_procedural)
-        - [Etendre votre code via des interfaces, package com.ruffin.interface_need](#etendre-votre-code-via-des-interfaces-package-comruffininterface_need)
-            - [Exception et ressources](#exception-et-ressources)
-        - [Interfaces d'implementation dans differents modules.](#interfaces-dimplementation-dans-differents-modules)
-        - [Reconnaitre les dangers de la surabstraction](#reconnaitre-les-dangers-de-la-surabstraction)
-        - [YAGNI ( Tu n'en auras pas besoin ==> You Ain't Gonna Need It)](#yagni--tu-nen-auras-pas-besoin--you-aint-gonna-need-it)
-    - [Trucs et astuces](#trucs-et-astuces)
+    - [Revenons sur l'abstraction](#revenons-sur-labstraction)
+        - [Demos Abstractions, package abstract_need](#demos-abstractions-package-abstract_need)
+        - [Demos abstraction procédurale, package abstract_procedural](#demos-abstraction-procédurale-package-abstract_procedural)
+    - [Etendre votre code via des interfaces, package com.ruffin.interface_need](#etendre-votre-code-via-des-interfaces-package-comruffininterface_need)
+        - [Exception et ressources](#exception-et-ressources)
+    - [Interfaces d'implementation dans differents modules.](#interfaces-dimplementation-dans-differents-modules)
+    - [Reconnaitre les dangers de la surabstraction](#reconnaitre-les-dangers-de-la-surabstraction)
+    - [YAGNI ( Tu n'en auras pas besoin ==> You Ain't Gonna Need It)](#yagni--tu-nen-auras-pas-besoin--you-aint-gonna-need-it)
+- [Trucs et astuces](#trucs-et-astuces)
 
 <!-- /TOC -->
 
 
 
-## JAVA_LES_BASES
+# JAVA_LES_BASES
 
-### Creation et execution d'une application java
+## Creation et execution d'une application java
 
 Le point d'entrée de l'application aura toujours la meme signature.
 
@@ -90,7 +87,7 @@ System.out.println('Hello world');
 ```
 
 
-### Execution d'une application en ligne de commande
+## Execution d'une application en ligne de commande
 
 Ouvrez l'inviter de commande a la racine du projet ou se trouve le fichier Main.class
 
@@ -98,12 +95,12 @@ Ouvrez l'inviter de commande a la racine du projet ou se trouve le fichier Main.
 java Main.java
 ```
 
-### Syntaxe d'une instruction
+## Syntaxe d'une instruction
 
 Une instruction se termine par un ;
 
 
-### Commentaires
+## Commentaires
 
 Commenter une ligne avec l'aide de //...
 
@@ -111,7 +108,7 @@ Commenter un bloc avec l'aide de /*...*/
 
 Commentaire java doc /**...*/
 
-### Organisation du code et package
+## Organisation du code et package
 
 Le code est organise en package.
 
@@ -127,7 +124,7 @@ Ces packages ont une convention de nom:
 package com.ruffin
 ```
 
-### Les variables
+## Les variables
 
 Une variable est un simple espace de stockage ou l'on y met une valeur qui sera fortement type.
 
@@ -151,7 +148,7 @@ System.out.println(unNombre);
 
 
 
-### Variables final
+## Variables final
 
 Une variable final est utilise, par exemple, pour definir une constante et ainsi eviter sa reaffectation par une autre valeur.
 
@@ -161,7 +158,7 @@ final int nombreMAx = 1542 ;
 ```
 
 
-### Les donnees de type primitives
+## Les donnees de type primitives
 
 * Entier (Nombre/ Integer)
 
@@ -239,7 +236,7 @@ boolean jaimeJava = true ;
 ```
 
 
-### Le stockage des donnees de type primitives
+## Le stockage des donnees de type primitives
 
 La donnee de la variable est stocke dans son propre espace memoire. Si l'on attribut cette donnee a une autre variable, cette autre variable sera la copie de la precedente.
 
@@ -263,7 +260,7 @@ System.out.println(secondNombre);
 // return 655
 ```
 
-### Les operateurs arithmetiques
+## Les operateurs arithmetiques
 
 * Basic
 
@@ -359,7 +356,7 @@ System.out.println(result4);
 
 
 
-### La convertion des types de donnees
+## La convertion des types de donnees
 
 La convertion se fait a l'aide de transtypage (ou cast).
 
@@ -388,7 +385,7 @@ Les conversions d'elargissement sont effectuees automatiquement pour les equatio
 
 Attention lors de cast le surplus sera supprimer si la taille n'est pas suffisante.
 
-### Logic conditionnel
+## Logic conditionnel
 
 <, >, <=, =>, ==, !=
 
@@ -407,7 +404,7 @@ System.out.println("Valeur recherche :"+searchValue);
 // return 7
 ```
 
-### If-else
+## If-else
 
 
 ```java
@@ -421,7 +418,7 @@ if (valueA > valueB ) {
  
 ```
 
-### Operation logique
+## Operation logique
 
 * And : &
 * Ou : |
@@ -429,17 +426,17 @@ if (valueA > valueB ) {
 * Negation : !
 
 
-### Condition d'operation logique
+## Condition d'operation logique
 
 
 * And : &&
 * Or : ||
 
-### Etat d'un bloc et etendu des variables
+## Etat d'un bloc et etendu des variables
 
 Les variables declarees a l'exterieur des blocs sont visibles a l'interieur de ceux-la, alors que les variable declarees dans un  bloc ne sera visible que dans le bloc.
 
-### Switch
+## Switch
 
 ```java
 switch (value-to-test) {
@@ -457,7 +454,7 @@ switch (value-to-test) {
 
 ```
 
-### Boucle while 
+## Boucle while 
 
 Exemple calcule factoriel
 
@@ -474,7 +471,7 @@ System.out.println(factoriel);
 
 ```
 
-### Boucle do-while
+## Boucle do-while
 
 ```java
 do {
@@ -486,7 +483,7 @@ do {
 ```
 
 
-### Boucle For
+## Boucle For
 
 
 ```java
@@ -495,7 +492,7 @@ for (int i = 1; i < 100; i *= 2) {
 	}
 ```
 
-### Tableau
+## Tableau
 
 Declaration
 
@@ -534,7 +531,7 @@ for (int i = 0; i < resultOp.length; i++) {
 ```
 
 
-### Boucle for each
+## Boucle for each
 
 
 ```java
@@ -546,7 +543,7 @@ for (float currentVal : resultOp2) {
 }
 ```
 
-### Methodes
+## Methodes
 
 
 ```java
@@ -612,7 +609,7 @@ Exemple : a 20 10
 
 Lors de l'execution nous aurons le resultat 30 qui s'affichera.
 
-### Chaine de caractere (class String)
+## Chaine de caractere (class String)
 
 * Egalite entre deux String
 
@@ -702,7 +699,7 @@ private static void displayResult(char c, double d, double e, double result) {
 
 
 
-### Format des String
+## Format des String
 
 Nous voulons afficher Mes noeuveux ont 17, 15, 8 et 6 ans le plus jeune.
 
@@ -840,7 +837,7 @@ output:
 
 ```
 
-### Class Instant LocalDate et DateTimeFormatter
+## Class Instant LocalDate et DateTimeFormatter
 
 Pour travailler avec les heures pour le suivi d'un evenement nous utilisons la class java *Instant*.
 
@@ -899,7 +896,7 @@ LocalDate theDate = LocalDate.parse(usDateString, usDateFormat);
 System.out.println("La date "+theDate);
 ```
 
-### Class Wrapper
+## Class Wrapper
 
 Les types primitifs sont incapables de fournir des méthodes pour exploiter ces datas.
 
@@ -939,9 +936,9 @@ static double saisiValMot(String val) {
 }
 ```
 
-## JAVA_POO les classes
+# JAVA_POO les classes
 
-### Les classes ont la syntaxe suivante:
+## Les classes ont la syntaxe suivante:
 
 ```java
 Flight.java
@@ -1017,7 +1014,7 @@ public class MathEquation {
 }
 ```
 
-### Instanciation et utilisation d'une classe
+## Instanciation et utilisation d'une classe
 
 ```java
 Flight toursToParis;
@@ -1100,7 +1097,7 @@ for (MathEquation mathEquation : equations) {
 
 ```
 
-### Encapsulation
+## Encapsulation
 
 
 1 Modificateur: pas de modificateur (package)
@@ -1119,12 +1116,12 @@ for (MathEquation mathEquation : equations) {
 * Utilisation des attributs: Oui
 
 
-### References special
+## References special
 
 * This: Est la reference implicite de l'objet courant.
 * Nul: Fait reference a un objet non cree
 
-###  Getters (Accessors) et Setters (Mutators)
+##  Getters (Accessors) et Setters (Mutators)
 
 Exemples:
 
@@ -1138,7 +1135,7 @@ public void setResult(double result) {
 }
 ```
 
-### Enchainement de constructeur
+## Enchainement de constructeur
 
 Exemple:
 
@@ -1159,7 +1156,7 @@ public MathEquation(char opCode) {
 }
 ```
 
-### Initialisation de blocs
+## Initialisation de blocs
 
 Nous pouvons initialiser un bloc comme ci-dessous afin d'initialiser un attribut du constructeur. Dans ce cas il esst necessaire de faire appel à this(); dans chaque constructeur afin qu'il herite du constructeur par defaut.
 
@@ -1169,7 +1166,7 @@ Nous pouvons initialiser un bloc comme ci-dessous afin d'initialiser un attribut
 }
 ```
 
-### Static
+## Static
 
 *Membres statiques*
 * partage a l'echelle de la classe
@@ -1190,7 +1187,7 @@ Nous pouvons initialiser un bloc comme ci-dessous afin d'initialiser un attribut
 * effectuer une initialisation de type unique
 * executer avant la premiere utilisation du type
 
-### Methodes
+## Methodes
 
 *Les objets sont passes par reference*
 * La reference est copiee dans la methode
@@ -1226,7 +1223,7 @@ Nous pouvons initialiser un bloc comme ci-dessous afin d'initialiser un attribut
 
 
 
-### Heritage de classe (extends)
+## Heritage de classe (extends)
 
 *L'heritage d'une classe d'une autre classe*
 * La classe derive a les caracteristiques de la classe de base
@@ -1249,7 +1246,7 @@ Nous pouvons initialiser un bloc comme ci-dessous afin d'initialiser un attribut
 * L'operateur d'egalite verifie les references
 * Remplacer la methode equals pour fournir des comparaisons d'egalite specifiques a une classe
 
-### Reference super, abstract et final
+## Reference super, abstract et final
 
 *super fait reference a l'objet actuel.*
 * Traite comme une instance de la classe de base.
@@ -1298,7 +1295,7 @@ class ClasseComplete extends ClasseAbstraite {
 * Par defaut, appelle la version sans argument
 * Peut explicitement appeler un constructeur specifique
 
-### Enum
+## Enum
 
 *Types d'enumeration*
 * Definie une liste finie de valeurs valides
@@ -1322,7 +1319,7 @@ class ClasseComplete extends ClasseAbstraite {
 * Peut tirer parti des constructeurs
 
 
-### Creer des relations abstraites avec des interfaces
+## Creer des relations abstraites avec des interfaces
 
 *Une interface definit un contrat*
 * Fournit une liste d'operations
@@ -1397,7 +1394,7 @@ public interface MonInterface {
 ```
 
 
-### Types imbriqués et classes anonymes
+## Types imbriqués et classes anonymes
 
 *Types imbriques*
 * Membres de type englobant
@@ -1504,9 +1501,9 @@ public class ClassePrincipale18 {
 Associe a l'instance de classe contenant
 
 
-## Retour sur les Interfaces et Abstracts
+# Retour sur les Interfaces et Abstracts
 
-### Etude d'un code sans ces concepts (attention ce code n'est pas correct et sera refactorise) package interfaceAndAbsttract_NOTUSED
+## Etude d'un code sans ces concepts (attention ce code n'est pas correct et sera refactorise) package interfaceAndAbsttract_NOTUSED
 
 Le programme permet de connaitre le revenu d'un engagement client sur un projet.
 
@@ -1674,7 +1671,7 @@ Interfaces:
 
 Les objets d'une classe enfant peuvent être references par la classe de leur parent, les methodes appelees sur le parent se lient a l'implementation de l'enfant.
 
-### Refactorisation du code avec une classe abstraite, package abstractConcept
+## Refactorisation du code avec une classe abstraite, package abstractConcept
 
 
 1 . Creer la classe abstraite RevenueCalculator
@@ -1794,7 +1791,7 @@ Cela est le meme code que precedemment a la difference qu'on lui d'extends on im
 
 **Les interfaces sont previlegie au Abstract**
 
-### Revenons sur l'abstraction
+## Revenons sur l'abstraction
 
 
 **Avantage**
@@ -1803,7 +1800,7 @@ Cela est le meme code que precedemment a la difference qu'on lui d'extends on im
 * Simplifie les interactions
 * ameliore la maintenance
 
-#### Demos Abstractions, package abstract_need
+### Demos Abstractions, package abstract_need
 
 Nous allons faire abstraction de la methode de calcule (RevenueCalculator calculator), passe directement en parametre de la methode (printTotalRevenue).
 
@@ -1855,7 +1852,7 @@ public class SalesPredictor {
 *Polymorphisme*
 * La couche d'abstraction peut avoir differentes implementations
 
-#### Demos abstraction procédurale, package abstract_procedural
+### Demos abstraction procédurale, package abstract_procedural
 
 *Exercice*
 
@@ -1967,7 +1964,7 @@ public class Animal {
 }
 ```
 
-### Etendre votre code via des interfaces, package com.ruffin.interface_need
+## Etendre votre code via des interfaces, package com.ruffin.interface_need
 
 * Declaration de notre interface dans ClientEngagementRepository, methodes add et remove. Cela permettra de construire notre interface avec la base de donnee , par rexemple.
 
@@ -2079,7 +2076,7 @@ public class Example {
 }
 ```
 
-#### Exception et ressources
+### Exception et ressources
 
 Nous pouvons encore ameliorer notre interface, en effet celle-ci nous retourne un objet de type Iterable, preferable a un type list car list nous propose des methodes qui n'a pas de sens dans ce context. Et Iterable a l'avantage d'avoir qu'une seule methode à implementer. Du coup pour obtenir le resultat de notre requete, il nous suffis d'utiliser une boucle for each apres avoir implementer la methode iterator() au resultat.
 
@@ -2131,7 +2128,7 @@ public interface ClientEngagementRepository extends AutoCloseable{
 
 ```
 
-### Interfaces d'implementation dans differents modules.
+## Interfaces d'implementation dans differents modules.
 
 *Implementer correctement une interface a l'aide du principe de substitution de Liskov*
 
@@ -2398,7 +2395,7 @@ public class DatabaseIterable implements Iterable<ClientEngagement> {
 ```
 
 
-### Reconnaitre les dangers de la surabstraction
+## Reconnaitre les dangers de la surabstraction
 
 * Chaque abstraction a un coût
 * *Objectif:* ameliorer notre base de code
@@ -2406,7 +2403,7 @@ public class DatabaseIterable implements Iterable<ClientEngagement> {
 * Jugement fonde sur des principes
 
 
-### YAGNI ( Tu n'en auras pas besoin ==> You Ain't Gonna Need It)
+## YAGNI ( Tu n'en auras pas besoin ==> You Ain't Gonna Need It)
 
 
 *Principe*
@@ -2420,7 +2417,7 @@ public class DatabaseIterable implements Iterable<ClientEngagement> {
 
 
 
-## Trucs et astuces
+# Trucs et astuces
 
 *Comparer des Objets*
 * En effet '==' permet uniquement de comparer les references des objets (adresse memoire)
